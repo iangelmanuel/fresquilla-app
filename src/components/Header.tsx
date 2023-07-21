@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { InstagramIcon } from '../svg/SvgIcons'
 
 const NAVIGATION = [
   { name: 'Inicio', path: '/' },
@@ -8,9 +9,10 @@ const NAVIGATION = [
 ]
 
 export default function Header (): JSX.Element {
+  const location = useLocation()
   return (
-    <section className="flex justify-between bg-[#F7B9C3] px-5 py-3 shadow-lg">
-      <div>
+    <article className="flex justify-between bg-[#F7B9C3] px-5 py-3 shadow-lg">
+      <section>
         <Link to="/" className="flex items-center gap-2">
           <img
             src="../../public/img/logo.png"
@@ -19,18 +21,26 @@ export default function Header (): JSX.Element {
           />
           <h1 className="text-2xl text-[#FF0D48] font-extrabold underline">Fresquilla</h1>
         </Link>
-      </div>
-      <div className="flex items-center gap-3">
+      </section>
+      <nav className="hidden md:flex items-center gap-5">
         {NAVIGATION.map(item => (
           <Link
             key={item.path}
             to={item.path}
-            className="text-[#FF0D48] font-bold hover:underline"
+            className={`${item.path === location.pathname ? 'bg-white' : ''} text-lg uppercase text-[#FF0D48] font-bold hover:underline`}
           >
             {item.name}
           </Link>
         ))}
-      </div>
-    </section>
+      </nav>
+      <section className="hidden md:flex items-center gap-3 hover:transition-all hover:translate-y-1">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.instagram.com/fresquilla_bq/">
+          <InstagramIcon />
+        </a>
+      </section>
+    </article>
   )
 }

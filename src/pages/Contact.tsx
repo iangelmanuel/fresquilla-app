@@ -1,30 +1,39 @@
 import { motion } from 'framer-motion'
 
-export default function About (): JSX.Element {
+import Lottie from 'lottie-react'
+import animation from '../../public/animations/strawberrya.json'
+
+import Hero from '../components/Hero'
+import ContactForm from '../components/ContactForm'
+
+export default function Contact (): JSX.Element {
   return (
-    <motion.section
+    <>
+      <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.3 } }}
-    >
-      <article className="container mx-auto my-20">
-        <h1 className="text-4xl font-bold text-center">¡Contactanos!</h1>
-        <p className="text-center">
-          ¡Contáctanos y déjanos endulzar tu día con nuestras deliciosas fresas! Estamos aquí para responder tus preguntas, atender tus solicitudes y compartir nuestra pasión por los sabores naturales y la sostenibilidad. ¡Esperamos con ansias escucharte!
-        </p>
-      </article>
-      <section className="bg-white p-5">
-        <form>
-          <div>
-            <label htmlFor="name">Nombre</label>
-            <input
-              type="text"
-              id="name"
-              className="w-full p-2 border border-gray-400 rounded-md outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
+      exit={{ y: '100%', transition: { duration: 0.5 } }}
+      >
+        <header className="mb-20">
+          <Hero
+            title="¿Tienes dudas o deseas comunicarte con nosotros?"
+            color="¡Contactanos!"
+            desc="Por este medio podrás contactarnos y te responderemos lo mas pronto posible con un correo electronico"
+            width="30"
+          />
+        </header>
+        <main className="w-full flex gap-4 justify-center items-center mb-20">
+          <section className="w-2/6">
+            <Lottie
+              animationData={animation}
+              className="w-9/12"
             />
-          </div>
-        </form>
-      </section>
-    </motion.section>
+          </section>
+          <section className="w-2/6">
+            <ContactForm />
+          </section>
+        </main>
+      </motion.article>
+    </>
   )
 }
