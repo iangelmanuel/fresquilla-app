@@ -17,7 +17,7 @@ export default function Form (): JSX.Element {
   }
 
   return (
-    <motion.form
+    <form
       className="bg-zinc-50 shadow-lg rounded-lg px-8 py-5 pb-8 mb-4"
     >
       <motion.div
@@ -30,7 +30,7 @@ export default function Form (): JSX.Element {
         <input
           id="name"
           type="text"
-          placeholder="Nombre"
+          placeholder="Ej. Ricardo"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </motion.div>
@@ -44,7 +44,7 @@ export default function Form (): JSX.Element {
         <input
           id="email"
           type="email"
-          placeholder="Correo"
+          placeholder="Ej. correo@correo.com"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </motion.div>
@@ -58,7 +58,7 @@ export default function Form (): JSX.Element {
         <textarea
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
           id="message"
-          placeholder="Mensaje"
+          placeholder="Ej. Hola, me gustaría saber más sobre sus productos."
         />
       </motion.div>
       <motion.div className="md:flex md:items-center md:justify-end">
@@ -68,6 +68,6 @@ export default function Form (): JSX.Element {
           className="bg-[#FF0D48] hover:bg-[#e20048] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full md:w-auto"
         />
       </motion.div>
-    </motion.form>
+    </form>
   )
 }

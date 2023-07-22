@@ -1,19 +1,9 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Navigation from './Navigation'
+import HamburgerNav from './HamburgerNav'
 import { InstagramIcon } from '../svg/SvgIcons'
-
-interface NavUrl {
-  name: string
-  path: string
-}
-
-const NAVIGATION: NavUrl[] = [
-  { name: 'Inicio', path: '/' },
-  { name: 'Nosotros', path: '/nosotros' },
-  { name: 'Contact', path: '/contacto' },
-  { name: 'Blog', path: '/blog' }
-]
+import { NAVIGATION } from '../data/navigationItems'
 
 export default function Header (): JSX.Element {
   return (
@@ -37,7 +27,7 @@ export default function Header (): JSX.Element {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="hidden md:flex items-center gap-5"
+        className="hidden md:flex md:items-center md:gap-5"
       >
         {NAVIGATION.map(item => (
           <Navigation
@@ -45,6 +35,15 @@ export default function Header (): JSX.Element {
             item={item}
           />
         ))}
+      </motion.nav>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="flex gap-5 justify-center items-center md:hidden"
+      >
+        {/* Navbar */}
+        <HamburgerNav />
       </motion.nav>
       <motion.section
         initial={{ y: -100, opacity: 0 }}

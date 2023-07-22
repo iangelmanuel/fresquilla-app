@@ -86,3 +86,38 @@ export function LinkBlog (): JSX.Element {
     </svg>
   )
 }
+
+export function OpenedNavBar (): JSX.Element {
+  return (
+      <svg
+      className="w-8 h-8"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#FF0D48"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  )
+}
+
+export function ClosedNavBar (): JSX.Element {
+  return (
+      <svg
+      className="w-8 h-8"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#FF0D48"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="3" y1="1" x2="21" y2="18" />
+      <line x1="3" y1="18" x2="21" y2="1" />
+    </svg>
+  )
+}
