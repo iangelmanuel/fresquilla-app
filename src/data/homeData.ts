@@ -1,6 +1,13 @@
 import { ContentIconA, ContentIconB, ContentIconC } from '../svg/SvgIcons'
 
-export const CONTENTDATA = [
+interface IContentData {
+  id: number
+  content: () => JSX.Element
+  title: string
+  description: string
+}
+
+export const contentData: IContentData[] = [
   {
     id: 1,
     content: ContentIconA,

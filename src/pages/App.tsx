@@ -7,14 +7,14 @@ export default function App (): JSX.Element {
     <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.3 } }}
+      exit={{ y: '100%', transition: { duration: 0.5 } }}
     >
       <header className="mb-20">
         <Hero
           title="Hola! Bienvenido a"
           color="Fresquilla"
-          desc="Somos una empresa dedicada a la venta de productos de panaderia y pasteleria"
-          width="95" />
+          desc="Somos una empresa dedicada a la venta de fresas de la mejor calidad"
+          width="100" />
       </header>
 
       <main className="w-full">

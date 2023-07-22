@@ -18,7 +18,7 @@ export default function Form (): JSX.Element {
 
   return (
     <motion.form
-      className="bg-zinc-50 shadow-lg rounded-lg px-8 pb-8 mb-4"
+      className="bg-zinc-50 shadow-lg rounded-lg px-8 py-5 pb-8 mb-4"
     >
       <motion.div
         initial={initial}
@@ -61,13 +61,12 @@ export default function Form (): JSX.Element {
           placeholder="Mensaje"
         />
       </motion.div>
-      <motion.div className="flex items-center justify-end">
-        <button
-          className="bg-[#FF0D48] hover:bg-[#e20048] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      <motion.div className="md:flex md:items-center md:justify-end">
+        <input
           type="button"
-        >
-          Enviar
-        </button>
+          value="Enviar"
+          className="bg-[#FF0D48] hover:bg-[#e20048] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full md:w-auto"
+        />
       </motion.div>
     </motion.form>
   )

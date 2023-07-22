@@ -8,7 +8,7 @@ export default function Layout (): JSX.Element {
       <header className="z-10">
         <Header />
       </header>
-      <main className="">
+      <main>
         <Outlet />
       </main>
       <footer>

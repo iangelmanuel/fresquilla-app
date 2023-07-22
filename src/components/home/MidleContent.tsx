@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { animationDescriptionMC, animationSvgMC, animationTitleMC } from '../../framer-motion/animations'
 
 interface MiddleContentProps {
   item: {
@@ -9,23 +10,10 @@ interface MiddleContentProps {
 }
 
 export default function MiddleContent ({ item }: MiddleContentProps): JSX.Element {
-  const animationTitle = {
-    hidden: { y: -50, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.7 } }
-  }
-  const animationDescription = {
-    hidden: { y: -50, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
-  }
-  const animationSvg = {
-    hidden: { y: -50, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
-  }
-
   return (
     <div className="text-center px-10">
       <motion.div
-        variants={animationSvg}
+        variants={animationSvgMC}
         initial="hidden"
         whileInView="visible"
         className="w-full flex justify-center mb-3"
@@ -33,7 +21,7 @@ export default function MiddleContent ({ item }: MiddleContentProps): JSX.Elemen
         <item.content />
       </motion.div>
       <motion.h4
-        variants={animationTitle}
+        variants={animationTitleMC}
         initial="hidden"
         whileInView="visible"
         className="text-xl font-bold mb-3"
@@ -42,7 +30,7 @@ export default function MiddleContent ({ item }: MiddleContentProps): JSX.Elemen
         </motion.h4>
 
       <motion.p
-        variants={animationDescription}
+        variants={animationDescriptionMC}
         initial="hidden"
         whileInView="visible"
         className="text-sm"

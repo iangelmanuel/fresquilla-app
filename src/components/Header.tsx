@@ -1,7 +1,14 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import Navigation from './Navigation'
 import { InstagramIcon } from '../svg/SvgIcons'
 
-const NAVIGATION = [
+interface NavUrl {
+  name: string
+  path: string
+}
+
+const NAVIGATION: NavUrl[] = [
   { name: 'Inicio', path: '/' },
   { name: 'Nosotros', path: '/nosotros' },
   { name: 'Contact', path: '/contacto' },
@@ -9,10 +16,14 @@ const NAVIGATION = [
 ]
 
 export default function Header (): JSX.Element {
-  const location = useLocation()
   return (
-    <article className="flex justify-between bg-[#F7B9C3] px-5 py-3 shadow-lg">
-      <section>
+    <article className="flex justify-between fixed z-10 w-full px-3 py-1">
+      <motion.section
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="flex items-center gap-3 hover:transition-all hover:translate-y-1"
+      >
         <Link to="/" className="flex items-center gap-2">
           <img
             src="../../public/img/logo.png"
@@ -21,26 +32,33 @@ export default function Header (): JSX.Element {
           />
           <h1 className="text-2xl text-[#FF0D48] font-extrabold underline">Fresquilla</h1>
         </Link>
-      </section>
-      <nav className="hidden md:flex items-center gap-5">
+      </motion.section>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="hidden md:flex items-center gap-5"
+      >
         {NAVIGATION.map(item => (
-          <Link
+          <Navigation
             key={item.path}
-            to={item.path}
-            className={`${item.path === location.pathname ? 'bg-white' : ''} text-lg uppercase text-[#FF0D48] font-bold hover:underline`}
-          >
-            {item.name}
-          </Link>
+            item={item}
+          />
         ))}
-      </nav>
-      <section className="hidden md:flex items-center gap-3 hover:transition-all hover:translate-y-1">
+      </motion.nav>
+      <motion.section
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="hidden md:flex items-center gap-3"
+      >
         <a
           target="_blank"
           rel="noreferrer"
           href="https://www.instagram.com/fresquilla_bq/">
           <InstagramIcon />
         </a>
-      </section>
+      </motion.section>
     </article>
   )
 }

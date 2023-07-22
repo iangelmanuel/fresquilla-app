@@ -1,21 +1,22 @@
-// import React, { createContext } from 'react'
+import { createContext } from 'react'
 
-// interface ThemeContextType {
-//   theme: string
-//   setTheme: React.Dispatch<React.SetStateAction<string>>
-// }
+interface FreshProviderProps {
+  children: JSX.Element
+}
 
-// const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+export interface FreshContextValue {
+  name?: string
+  age?: number
+}
 
-// export default function ThemeProvider: React.FC ({children}: JSX.) {
+export const FreshContext = createContext<FreshContextValue | undefined>(undefined)
 
-//   return (
-//     <ThemeContext.Provider
-//       value={{
+export default function FreshProvider ({ children }: FreshProviderProps): JSX.Element {
+  return (
+    <FreshContext.Provider
+      value={{
 
-//       }}
-//     >
-//       {children}
-//     </ThemeContext.Provider>
-//   )
-// }
+      }}
+    >{children}</FreshContext.Provider>
+  )
+}

@@ -19,17 +19,17 @@ export default function Contact (): JSX.Element {
             title="¿Tienes dudas o deseas comunicarte con nosotros?"
             color="¡Contactanos!"
             desc="Por este medio podrás contactarnos y te responderemos lo mas pronto posible con un correo electronico"
-            width="30"
+            width="40"
           />
         </header>
-        <main className="w-full flex gap-4 justify-center items-center mb-20">
-          <section className="w-2/6">
+        <main className="flex-wrap-reverse md:w-full md:flex gap-4 justify-center items-center mb-20">
+          <section className="flex justify-center mb-5 w-full md:w-2/6">
             <Lottie
               animationData={animation}
-              className="w-9/12"
+              className="w-40 md:w-9/12"
             />
           </section>
-          <section className="w-2/6">
+          <section className="w-full px-5 md:w-2/6">
             <ContactForm />
           </section>
         </main>
