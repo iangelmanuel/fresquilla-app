@@ -9,8 +9,8 @@ export default function HamburgerNav (): JSX.Element {
     <div className="mt-2">
       <button
         type="button"
-        className="focus:outline-none"
         onClick={handleHamburgerNavBar}
+        className="w-10 h-10 focus:outline-none"
       >
       { isOpen
         ? (

@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import useFresh from '../hook/useFresh'
 import Navigation from './Navigation'
 import HamburgerNav from './HamburgerNav'
 import { InstagramIcon } from '../svg/SvgIcons'
 import { NAVIGATION } from '../data/navigationItems'
 
 export default function Header (): JSX.Element {
+  const { isTransparent } = useFresh()
   return (
     <article className="flex justify-between fixed z-10 w-full px-3 py-1">
+      {!isTransparent && (
+        <motion.div
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`${isTransparent ? 'hidden' : 'bg-white border-b border-zinc-100 shadow-2xl fixed top-0 left-0 -z-10 w-full py-7 md:py-6'}`}></motion.div>
+      )}
       <motion.section
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="flex items-center gap-3 hover:transition-all hover:translate-y-1"
+        className="flex items-center gap-3"
       >
         <Link to="/" className="flex items-center gap-2">
           <img
@@ -27,7 +36,7 @@ export default function Header (): JSX.Element {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="hidden md:flex md:items-center md:gap-5"
+        className="hidden lg:flex md:items-center md:gap-5"
       >
         {NAVIGATION.map(item => (
           <Navigation
@@ -40,7 +49,7 @@ export default function Header (): JSX.Element {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="flex gap-5 justify-center items-center md:hidden"
+        className="block lg:hidden"
       >
         {/* Navbar */}
         <HamburgerNav />
@@ -49,7 +58,7 @@ export default function Header (): JSX.Element {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="hidden md:flex items-center gap-3"
+        className="hidden lg:flex items-center gap-3"
       >
         <a
           target="_blank"

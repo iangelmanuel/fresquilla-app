@@ -26,13 +26,13 @@ export default function Hero ({ title, color, desc, width = '100' }: HeroProps):
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-2 mb-3 text-4xl font-bold tracking-tight md:text-6xl xl:text-7xl"
+              className="md:mt-2 mb-3 text-4xl font-bold tracking-tight md:text-6xl xl:text-7xl"
             >{title} <span className="text-[#FF0D48]">{color}</span></motion.h1>
             <motion.p
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="text-xl"
+              className="text-sm md:text-xl md:leading-10"
             >{desc}</motion.p>
           </div>
         </div>

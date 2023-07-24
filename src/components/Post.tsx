@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { LinkBlog } from '../../src/svg/SvgIcons'
 import { formatedDate } from '../helpers/formatedDate'
-import { animationBlogPost } from '../framer-motion/animations'
 
 export interface PostKeys {
   post: {
@@ -20,9 +19,9 @@ export default function Post ({ post }: PostKeys): JSX.Element {
   const { title, desc, date } = post
   return (
     <motion.article
-      variants={animationBlogPost}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ y: 50, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
       className="bg-zinc-50 shadow-lg rounded-lg px-8 pb-8 mb-4"
     >
       <section className="mb-4">
