@@ -8,12 +8,16 @@ export interface FreshContextValue {
   isOpen: boolean
   handleHamburgerNavBar: () => void
   isTransparent: boolean
+  isClaimsForm: boolean
+  handleClaimsForm: () => void
 }
 
 const initialValues: FreshContextValue = {
   isOpen: false,
   handleHamburgerNavBar: () => {},
-  isTransparent: true
+  isTransparent: true,
+  isClaimsForm: false,
+  handleClaimsForm: () => {}
 }
 
 export const FreshContext = createContext(initialValues)
@@ -21,6 +25,7 @@ export const FreshContext = createContext(initialValues)
 export default function FreshProvider ({ children }: FreshProviderProps): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isTransparent, setIsTransparent] = useState<boolean>(true)
+  const [isClaimsForm, setIsClaimsForm] = useState<boolean>(false)
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -35,21 +40,20 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
     window.addEventListener('scroll', handleScroll)
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => { window.removeEventListener('scroll', handleScroll) }
   }, [])
 
-  const handleHamburgerNavBar = (): void => {
-    setIsOpen(!isOpen)
-  }
+  const handleHamburgerNavBar = (): void => { setIsOpen(!isOpen) }
+  const handleClaimsForm = (): void => { setIsClaimsForm(!isClaimsForm) }
 
   return (
     <FreshContext.Provider
       value={{
         isOpen,
         handleHamburgerNavBar,
-        isTransparent
+        isTransparent,
+        isClaimsForm,
+        handleClaimsForm
       }}
     >{children}</FreshContext.Provider>
   )

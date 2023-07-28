@@ -1,10 +1,9 @@
-import useFresh from '../hook/useFresh'
-import HamburgerMenu from './HamburgerMenu'
-import { OpenedNavBar } from '../svg/SvgIcons'
+import useFresh from '../../hook/useFresh'
+import AdminHamburgerMenu from './AdminHamburgerMenu'
+import { OpenedNavBar } from '../../svg/SvgIcons'
 
-export default function HamburgerNav (): JSX.Element {
+export default function AdminHamburgerNav (): JSX.Element {
   const { isOpen, handleHamburgerNavBar } = useFresh()
-
   return (
     <div className="mt-2">
       <button
@@ -14,10 +13,10 @@ export default function HamburgerNav (): JSX.Element {
       >
       { isOpen
         ? (
-            <HamburgerMenu />
+          <AdminHamburgerMenu />
           )
         : (
-            <OpenedNavBar />
+          <OpenedNavBar />
           )}
       </button>
     </div>

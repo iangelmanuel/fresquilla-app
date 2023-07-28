@@ -3,8 +3,12 @@
 2. [] Agregar/Mejorar el contenido de la página a la de Fresquilla. (TEXTO) -> (APP, ABOUT, CONTACT )
 3. [✅] Quitarle el fondo al logo de Fresquilla para que se pueda usar en el menú de navegación. (IMAGEN)
 4. [✅] Mejorar el apartado de que no existen posts.
-5. [] Agregar la funcionalidad para cambiar el formulario por medio de un switch a Quejas y Reclamos. (FORMULARIO)
-6. [] Crear un User Interface para Administrador. (ADMIN)
+5. [✅] Agregar la funcionalidad para cambiar el formulario por medio de un switch a Quejas y Reclamos. (FORMULARIO)
+6. [✅] Crear un User Interface para Administrador. (ADMIN)
+7. [✅] Mejorar el footer.
+8. [] Encontrar la solución para la animación del menu de hamburguesa, la barra de navegación y los formularios.
+9. [] Checar que pasa con el hamburger menu cuando se abre en un dispositivo móvil.
+10. [] Hacer la parte del Login para el administrador.
 
 ** TODO DATABASE:
 1. [] Crear base de datos con Node, Express y MongoDB.
