@@ -1,4 +1,80 @@
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import useFresh from '../hook/useFresh'
+import useAuth from '../hook/useAuth'
+import axiosClient from '../config/axiosClient'
+import Alert from '../components/Alert'
+import axios, { type AxiosError } from 'axios'
+
+interface ApiError {
+  message?: string
+}
+
 export default function Login (): JSX.Element {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const { alert, setAlert } = useFresh()
+  const { setAuth } = useAuth()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token') as string
+    const pathLocation = location.pathname === '/login' && token !== null && token !== ''
+
+    const isAutenticated = (): undefined | Response => {
+      if (token === null && token === '') {
+        return
+      }
+
+      if (pathLocation) {
+        navigate('/admin')
+      }
+    }
+
+    isAutenticated()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<undefined> => {
+    e.preventDefault()
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+
+    if ([email, password].includes('')) {
+      setAlert({ error: true, msg: 'Todos los campos son obligatorios' })
+      return
+    }
+
+    if (!validEmail.test(email)) {
+      setAlert({ error: true, msg: 'El correo no es válido' })
+      return
+    }
+
+    setAlert({ error: false, msg: '' })
+    setEmail('')
+    setPassword('')
+
+    try {
+      const { data } = await axiosClient.post('/admin/login', { email, password })
+      localStorage.setItem('token', data.token)
+      console.log(data)
+      setAuth(data)
+      navigate('/admin')
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<ApiError>
+        setAlert({ error: true, msg: axiosError?.response?.data?.message ?? 'Error desconocido' })
+        console.log(error)
+      }
+    }
+  }
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value)
+  }
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value)
+  }
+
   return (
     <main>
       <article className="flex gap-5 flex-col items-center mt-5 md:mt-10">
@@ -15,18 +91,20 @@ export default function Login (): JSX.Element {
             <img
               src="/public/img/logo.png"
               alt="Logo Fresquilla"
-              className="w-40 mx-auto mb-5"
+              className="w-48 mx-auto mb-5"
             />
           </div>
           <div className="w-1/2">
-            <form className="flex flex-col">
+            <form onSubmit={handleSubmit} className="flex flex-col" noValidate>
+              {alert.error && <Alert />}
               <div className="mb-5">
-                <label htmlFor="username" className="font-bold mb-5">Nombre de administrador</label>
+                <label htmlFor="email" className="font-bold mb-5">Correo</label>
                 <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Username"
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleChangeEmail}
+                  placeholder="Email del administrador"
                   className="border-2 border-gray-300 rounded-lg p-2"
                 />
               </div>
@@ -35,8 +113,9 @@ export default function Login (): JSX.Element {
                 <label htmlFor="username" className="font-bold mb-5">Contraseña</label>
                 <input
                   type="password"
-                  name="password"
                   id="password"
+                  value={password}
+                  onChange={handleChangePassword}
                   placeholder="Password"
                   className="border-2 border-gray-300 rounded-lg p-2"
                 />

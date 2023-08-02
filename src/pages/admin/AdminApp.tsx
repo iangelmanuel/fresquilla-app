@@ -18,7 +18,7 @@ export default function AdminApp (): JSX.Element {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
         className="text-center text-3xl md:text-4xl lg:text-6xl font-extrabold"
-      >Bienvenido/a <span className="text-[#FF0D48]">(name)</span></motion.h2>
+      >Bienvenida <span className="text-[#FF0D48]">Maria Alejandra</span></motion.h2>
 
       <motion.p
         initial={{ opacity: 0, y: -50 }}

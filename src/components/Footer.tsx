@@ -15,9 +15,9 @@ export default function Footer (): JSX.Element {
         <section className="mt-5">
           <div className="flex flex-col gap-5">
             <h3 className="text-2xl text-center lg:text-start text-white font-bold">Contacto</h3>
-            <p className="text-base text-center lg:text-start text-white font-bold">Telefono: <span className="text-base font-normal">+57 XXX XXXX XXX</span></p>
-            <p className="text-base text-center lg:text-start text-white font-bold">Correo: <span className="text-base font-normal">correo@correo.com</span></p>
-            <p className="text-base text-center lg:text-start text-white font-bold">Dirección: <span className="text-base font-normal">Calle 42 #42 - 42</span></p>
+            <p className="text-base text-center lg:text-start text-white font-bold">Telefono: <span className="text-base font-normal">+57 324 419 2998</span></p>
+            <p className="text-base text-center lg:text-start text-white font-bold">Correo: <span className="text-base font-normal">Fresquillabq@gmail.com</span></p>
+            <p className="text-base text-center lg:text-start text-white font-bold">Dirección: <span className="text-base font-normal">Altamira - Miramar</span></p>
           </div>
         </section>
 
@@ -52,8 +52,8 @@ export default function Footer (): JSX.Element {
         <section className="mt-5">
           <div className="flex flex-col gap-5">
             <h3 className="text-center lg:text-start text-2xl text-white font-bold">Horarios</h3>
-            <p className="text-center lg:text-start text-base text-white font-bold">Lunes a Viernes: <span className="text-base font-normal">8:00 am - 6:00 pm</span></p>
-            <p className="text-center lg:text-start text-base text-white font-bold">Sabados: <span className="text-base font-normal">8:00 am - 2:00 pm</span></p>
+            <p className="text-center lg:text-start text-base text-white font-bold">Lunes a Viernes: <span className="text-base font-normal">8:00 am - 5:00 pm</span></p>
+            <p className="text-center lg:text-start text-base text-white font-bold">Sabados: <span className="text-base font-normal">12:00 am - 12:00 pm</span></p>
             <p className="text-center lg:text-start text-base text-white font-bold">Domingos: <span className="text-base font-normal">Cerrado</span></p>
           </div>
         </section>
