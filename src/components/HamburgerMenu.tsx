@@ -4,14 +4,21 @@ import { NAVIGATION, type NavUrl } from '../data/navigationItems'
 import { ClosedNavBar } from '../svg/SvgIcons'
 import HamburgerNavItems from './HamburgerNavItems'
 
+const menuAnimation = {
+  initial: { x: 500, opacity: 0 },
+  animate: { x: 0, opacity: 1, transition: { duration: 1 } },
+  exit: { x: 500, opacity: 0, transition: { duration: 1 } }
+}
+
 export default function HamburgerMenu (): JSX.Element {
   const { handleHamburgerNavBar } = useFresh()
   return (
     <motion.article
-      initial={{ x: 500 }}
-      animate={{ x: 0 }}
-      exit={{ x: 0 }}
-      transition={{ duration: 0.3 }}
+      variants={menuAnimation}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      key="openedNavBar"
       className="flex flex-col justify-between md:justify-normal fixed z-10 top-0 right-0 w-3/4 h-full bg-white shadow-2xl"
     >
       <header className="flex justify-between mt-2 mb-10 mx-5">

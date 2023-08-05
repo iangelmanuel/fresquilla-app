@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useFresh from '../hook/useFresh'
 import useAuth from '../hook/useAuth'
@@ -16,23 +16,6 @@ export default function Login (): JSX.Element {
   const { alert, setAlert } = useFresh()
   const { setAuth } = useAuth()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const token = localStorage.getItem('token') as string
-    const pathLocation = location.pathname === '/login' && token !== null && token !== ''
-
-    const isAutenticated = (): undefined | Response => {
-      if (token === null && token === '') {
-        return
-      }
-
-      if (pathLocation) {
-        navigate('/admin')
-      }
-    }
-
-    isAutenticated()
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<undefined> => {
     e.preventDefault()
@@ -55,9 +38,9 @@ export default function Login (): JSX.Element {
     try {
       const { data } = await axiosClient.post('/admin/login', { email, password })
       localStorage.setItem('token', data.token)
-      console.log(data)
       setAuth(data)
       navigate('/admin')
+      console.log(data)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError<ApiError>
@@ -86,6 +69,7 @@ export default function Login (): JSX.Element {
             <span className="text-[#FF0D48]">Administrador en Fresquilla</span>
           </h1>
         </section>
+
         <section className="flex gap-5 flex-col md:flex-row items-center bg-gray-100 p-2 py-20 md:py-10 md:p-10 rounded-lg shadow-lg">
           <div className="w-1/2">
             <img

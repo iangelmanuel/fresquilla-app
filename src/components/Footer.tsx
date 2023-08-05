@@ -44,7 +44,7 @@ export default function Footer (): JSX.Element {
               className="flex gap-2 items-center text-base text-white font-bold"
               >
               <InstagramIcon />
-              <p>@Fresquilla</p>
+              <p>Fresquilla</p>
             </a>
           </div>
         </section>

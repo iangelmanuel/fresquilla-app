@@ -6,7 +6,7 @@ export default function Layout (): JSX.Element {
   return (
     <>
       <header className="z-10">
-        <Header />
+          <Header />
       </header>
       <main>
         <Outlet />

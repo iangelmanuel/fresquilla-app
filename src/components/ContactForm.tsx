@@ -1,28 +1,15 @@
-import { useForm, type FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import useFresh from '../hook/useFresh'
 import Alert from './Alert'
 import { motion } from 'framer-motion'
-
-const animationCamp = {
-  initial: {
-    opacity: 0,
-    y: 50
-  },
-  animate: {
-    opacity: 1,
-    y: 1
-  },
-  transition: {
-    duration: 0.5
-  }
-}
+import { type DataContact } from '../context/FreshProvider'
 
 export default function Form (): JSX.Element {
   const { register, handleSubmit } = useForm()
   const { alert, setAlert, sendContactData } = useFresh()
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
-  const formData = async (data: FieldValues): Promise<undefined> => {
+  const formData = async (data: DataContact): Promise<undefined> => {
     console.log(data)
     if (Object.values(data).length === 0) {
       setAlert({ error: true, msg: 'Todos los campos son obligatorios' })
@@ -45,20 +32,22 @@ export default function Form (): JSX.Element {
   return (
     <form
       noValidate
-      onSubmit={ handleSubmit(data => { formData(data) })}
+      onSubmit={ handleSubmit(data => { formData(data as DataContact) })}
       className="bg-zinc-50 shadow-lg rounded-lg px-8 py-5 pb-8 mb-4"
     >
       {alert.error && <Alert />}
       <motion.h3
-        initial={animationCamp.initial}
-        animate={animationCamp.animate}
-        transition={animationCamp.transition}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="text-center text-xl font-bold mb-5"
       >Comunicate con nosotros para dudas o realizar pedidos</motion.h3>
       <motion.div
-        initial={animationCamp.initial}
-        animate={animationCamp.animate}
-        transition={animationCamp.transition}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="mb-4"
       >
         <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="name">Nombre</label>
@@ -71,9 +60,10 @@ export default function Form (): JSX.Element {
         />
       </motion.div>
       <motion.div
-        initial={animationCamp.initial}
-        animate={animationCamp.animate}
-        transition={animationCamp.transition}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="mb-4"
       >
         <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="email">Correo</label>
@@ -86,9 +76,10 @@ export default function Form (): JSX.Element {
         />
       </motion.div>
       <motion.div
-        initial={animationCamp.initial}
-        animate={animationCamp.animate}
-        transition={animationCamp.transition}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="mb-4"
       >
         <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="phone">Télefono</label>
@@ -101,9 +92,10 @@ export default function Form (): JSX.Element {
         />
       </motion.div>
       <motion.div
-        initial={animationCamp.initial}
-        animate={animationCamp.animate}
-        transition={animationCamp.transition}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="mb-4"
       >
         <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="message">Mensaje</label>

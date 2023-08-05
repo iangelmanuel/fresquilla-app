@@ -7,9 +7,7 @@ import { adminNavigation } from '../data/adminNavigation'
 
 export default function AdminLayout (): JSX.Element {
   const { auth, loading } = useAuth()
-
   const isAuthenticated = typeof auth?._id === 'string' && auth?._id !== ''
-
   if (loading) return (<h1>Cargando...</h1>)
   return (
     <>

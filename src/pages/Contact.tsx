@@ -1,24 +1,30 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import Atropos from 'atropos/react'
 import useFresh from '../hook/useFresh'
 import Hero from '../components/Hero'
 import ContactForm from '../components/ContactForm'
 import ClaimsForm from '../components/ClaimsForm'
 import { InstagramIcon } from '../svg/SvgIcons'
+import 'atropos/css'
 
 const animationCard = {
   hidden: { y: -50, opacity: 0 },
   visible: { y: 0, opacity: 1, transition: { duration: 0.7, delay: 0.7 } }
 }
 
+const formAnimation = {
+  hidden: { y: -50, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.7, delay: 0.7 } },
+  exit: { y: 50, opacity: 0, transition: { duration: 0.5 } }
+}
+
 export default function Contact (): JSX.Element {
   const { isClaimsForm, handleClaimsForm } = useFresh()
-
   return (
-    <>
       <motion.article
-      initial={{ width: 0 }}
-      animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.5 } }}
+        variants={animationCard}
+        initial="hidden"
+        animate="visible"
       >
         <header className="mb-5">
           <Hero
@@ -28,63 +34,69 @@ export default function Contact (): JSX.Element {
             width="50"
           />
         </header>
-        <main className="md:w-full md:flex my-10">
-
-          <article className="md:flex md:px-32 md:w-1/2">
-            <div className="md:flex md:justify-center md:items-center">
-              <div className="flex flex-wrap">
-                <section className="w-full shrink-0 grow-0 basis-auto md:w-2/12 lg:w-3/12">
+        <main className="md:w-full md:flex md:flex-col md:items-center my-10">
+          <Atropos className="">
+            <article className="bg-gray-300 md:flex md:px-32 rounded-lg shadow-lg px-8 py-5 pb-8 mb-10">
+              <div className="md:flex md:justify-center md:items-center flex flex-col items-center">
+                <section className="w-full basis-auto md:w-2/12">
                   <motion.img
-                    initial={{ x: -100, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    src="../../../public/img/logoV2.JPG"
+                    src="/img/logoV2.JPG"
                     alt="logoV2"
                     className="hidden md:block mb-6 rounded-lg shadow-lg"
                   />
                 </section>
 
-                <section className="w-full shrink-0 grow-0 basis-auto text-center md:w-10/12 md:pl-6 md:text-left lg:w-9/12 mb-10 md:mb-0 bg-zinc-200 p-5 md:bg-transparent md:p-0">
-                  <motion.h3
-                    initial={{ y: -50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="mb-6 text-xl font-semibold"
-                  >Información de Fresquilla</motion.h3>
-                  <motion.ul
-                    variants={animationCard}
-                    initial="hidden"
-                    whileInView="visible"
-                    className="list-inside mb-6 flex justify-center space-x-4 md:justify-start"
-                  >
+                <section className="flex gap-2 flex-col">
+                  <div className="mb-3">
+                    <motion.h3
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="text-xl font-bold text-center"
+                    >Información de Fresquilla:</motion.h3>
+                  </div>
+                  <div className="mb-3">
                     <motion.a
-                      variants={animationCard}
-                      initial="hidden"
-                      whileInView="visible"
-                      target="_blank"
-                      rel="noreferrer"
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
                       href="https://www.instagram.com/fresquilla_bq/"
-                      className="w-5 h-5"
+                      className="flex gap-2 justify-center"
                     >
                       <InstagramIcon />
+                      <span>fresquilla_bq</span>
                     </motion.a>
-                  </motion.ul>
+                  </div>
+                  <div className="mb-3">
                     <motion.p
-                      variants={animationCard}
-                      initial="hidden"
-                      whileInView="visible"
-                    >Barranquilla - Atlántico</motion.p>
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="text-center text-gray-700 font-semibold"
+                    >Telefono: <span className="font-normal text-gray-500">+57 324 419 2998</span></motion.p>
                     <motion.p
-                      variants={animationCard}
-                      initial="hidden"
-                      whileInView="visible"
-                    >Tel: XXX XXXX XXX</motion.p>
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="text-center text-gray-700 font-semibold"
+                    >Correo: <span className="font-normal text-gray-500">Fresquillabq@gmail.com</span></motion.p>
+                    <motion.p
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="text-center text-gray-700 font-semibold"
+                    >Dirección: <span className="font-normal text-gray-500">Altamira - Miramar</span></motion.p>
+                  </div>
                 </section>
               </div>
-            </div>
-          </article>
+            </article>
+          </Atropos>
 
-          <section className="w-full flex gap-5 md:gap-0 flex-col items-center md:block px-5 md:w-1/2">
+          <article
+            className="w-full flex gap-5 md:gap-0 flex-col items-center md:block px-5 md:w-1/2">
             <input
               type="checkbox"
               id="flexSwitchCheckDefault"
@@ -95,18 +107,34 @@ export default function Contact (): JSX.Element {
             <label
               htmlFor="flexSwitchCheckDefault"
               className="inline-block pl-[0.15rem] hover:cursor-pointer text-center mb-5"
-            >¿Tienes alguna queja o reclamo? Cambia el modo del Formulario</label>
-
-            {isClaimsForm
-              ? (
-                  <ClaimsForm />
-                )
-              : (
-                  <ContactForm />
-                )}
-          </section>
+            >{isClaimsForm ? '¿Tienes alguna queja o reclamo? Cambia el modo del Formulario' : '¿Quieres contactarnos con nosotros? Cambia el modo del Formulario'}</label>
+            <AnimatePresence>
+              {isClaimsForm
+                ? (
+                    <motion.div
+                    variants={formAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    key="claimsForm"
+                    >
+                      <ClaimsForm />
+                    </motion.div>
+                  )
+                : (
+                    <motion.div
+                      variants={formAnimation}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      key="contactForm"
+                    >
+                      <ContactForm />
+                    </motion.div>
+                  )}
+            </AnimatePresence>
+          </article>
         </main>
       </motion.article>
-    </>
   )
 }
