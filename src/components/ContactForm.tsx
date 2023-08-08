@@ -1,17 +1,18 @@
 import { useForm } from 'react-hook-form'
+import { motion } from 'framer-motion'
 import useFresh from '../hook/useFresh'
 import Alert from './Alert'
-import { motion } from 'framer-motion'
 import { type DataContact } from '../context/FreshProvider'
 
 export default function Form (): JSX.Element {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, reset } = useForm()
   const { alert, setAlert, sendContactData } = useFresh()
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
-  const formData = async (data: DataContact): Promise<undefined> => {
-    console.log(data)
-    if (Object.values(data).length === 0) {
+  const formData = async (data: DataContact): Promise<void> => {
+    const { name, email, phone, message } = data
+
+    if ([name, email, phone, message].includes('')) {
       setAlert({ error: true, msg: 'Todos los campos son obligatorios' })
       return
     }
@@ -27,6 +28,7 @@ export default function Form (): JSX.Element {
     }
     setAlert({ error: false, msg: '' })
     await sendContactData(data)
+    reset()
   }
 
   return (
@@ -56,7 +58,7 @@ export default function Form (): JSX.Element {
           type="text"
           placeholder="Ej. Ricardo"
           {...register('name')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </motion.div>
       <motion.div
@@ -66,13 +68,13 @@ export default function Form (): JSX.Element {
         transition={{ duration: 0.5 }}
         className="mb-4"
       >
-        <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="email">Correo</label>
+        <label className="block text-zinc-700 text-lg font-bold mb-2" htmlFor="email">Correo</label>
         <input
           id="email"
           type="email"
           placeholder="Ej. correo@correo.com"
           {...register('email')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </motion.div>
       <motion.div
@@ -82,13 +84,13 @@ export default function Form (): JSX.Element {
         transition={{ duration: 0.5 }}
         className="mb-4"
       >
-        <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="phone">Télefono</label>
+        <label className="block text-zinc-700 text-lg font-bold mb-2" htmlFor="phone">Télefono</label>
         <input
           id="phone"
           type="phone"
           placeholder="Ej. +57 123 456 7890"
           {...register('phone')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </motion.div>
       <motion.div
@@ -98,12 +100,12 @@ export default function Form (): JSX.Element {
         transition={{ duration: 0.5 }}
         className="mb-4"
       >
-        <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="message">Mensaje</label>
+        <label className="block text-zinc-700 text-lg font-bold mb-2" htmlFor="message">Mensaje</label>
         <textarea
           id="message"
           placeholder="Ej. Hola, me gustaría saber más sobre sus productos."
           {...register('message')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 leading-tight focus:outline-none focus:shadow-outline h-32"
         />
       </motion.div>
       <motion.div className="md:flex md:items-center md:justify-end">

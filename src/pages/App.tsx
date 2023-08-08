@@ -14,7 +14,8 @@ export default function App (): JSX.Element {
           title="Hola! Bienvenido a"
           color="Fresquilla"
           desc="Somos una empresa dedicada a la venta de fresas de la mejor calidad"
-          width="100" />
+          width="100"
+        />
       </header>
 
       <main className="w-full">

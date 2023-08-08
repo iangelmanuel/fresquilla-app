@@ -1,13 +1,14 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import useAuth from '../hook/useAuth'
 import { motion } from 'framer-motion'
+import useAuth from '../hook/useAuth'
 import AdminNavigation from '../components/admin/AdminNavigation'
 import AdminHamburgerNav from '../components/admin/AdminHamburgerNav'
 import { adminNavigation } from '../data/adminNavigation'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function AdminLayout (): JSX.Element {
   const { auth, loading } = useAuth()
-  const isAuthenticated = typeof auth?._id === 'string' && auth?._id !== ''
+  const isAuthenticated = auth?._id !== undefined && auth?._id !== null && auth?._id !== ''
   if (loading) return (<h1>Cargando...</h1>)
   return (
     <>
@@ -18,7 +19,7 @@ export default function AdminLayout (): JSX.Element {
                 <header>
                   <div className="flex gap-2 justify-center items-center">
                     <img
-                      src="public/img/logo.PNG"
+                      src="/img/logo.PNG"
                       alt="Logo Fresquilla"
                       className="w-14 h-14"
                     />

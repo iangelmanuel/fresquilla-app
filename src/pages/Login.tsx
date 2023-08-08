@@ -17,7 +17,7 @@ export default function Login (): JSX.Element {
   const { setAuth } = useAuth()
   const navigate = useNavigate()
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<undefined> => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
@@ -40,7 +40,6 @@ export default function Login (): JSX.Element {
       localStorage.setItem('token', data.token)
       setAuth(data)
       navigate('/admin')
-      console.log(data)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError<ApiError>

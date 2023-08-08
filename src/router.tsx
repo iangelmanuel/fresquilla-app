@@ -31,13 +31,13 @@ export default function Router (): JSX.Element {
               <Route path="/blog" element={<Blog />} />
             </Route>
               <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route path="/admin" element={<AdminApp />} />
-              <Route path="/admin/create-blog" element={<AdminCreateBlog />} />
-              <Route path="/admin/blogs" element={<AdminBlogs />} />
-              <Route path="/admin/contacts" element={<AdminContacts />} />
-              <Route path="/admin/claims" element={<AdminClaims />} />
-            </Route>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route path="/admin" element={<AdminApp />} />
+                <Route path="/admin/create-blog" element={<AdminCreateBlog />} />
+                <Route path="/admin/blogs" element={<AdminBlogs />} />
+                <Route path="/admin/contacts" element={<AdminContacts />} />
+                <Route path="/admin/claims" element={<AdminClaims />} />
+              </Route>
           </Routes>
         </Routers>
       </FreshProvider>

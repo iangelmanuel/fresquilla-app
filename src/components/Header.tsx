@@ -7,8 +7,6 @@ import WhiteBar from './WhiteBar'
 import { InstagramIcon } from '../svg/SvgIcons'
 import { NAVIGATION } from '../data/navigationItems'
 
-// TODO: repair animation
-
 export default function Header (): JSX.Element {
   const { isTransparent } = useFresh()
   return (

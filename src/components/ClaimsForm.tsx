@@ -29,12 +29,14 @@ const PROBLEMCASES: ProblemCase[] = [
 ]
 
 export default function ClaimsForm (): JSX.Element {
+  const { register, handleSubmit, reset } = useForm()
   const { alert, setAlert, sendClaimsData } = useFresh()
-  const { register, handleSubmit } = useForm()
 
-  const formData = async (data: DataClaim): Promise<undefined> => {
+  const formData = async (data: DataClaim): Promise<void> => {
+    const { problem, name, email, phone, message } = data
     const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
-    if (Object.values(data).length === 0) {
+
+    if ([problem, name, email, phone, message].includes('')) {
       setAlert({ error: true, msg: 'Todos los campos son obligatorios' })
       return
     }
@@ -50,6 +52,7 @@ export default function ClaimsForm (): JSX.Element {
     }
     setAlert({ error: false, msg: '' })
     await sendClaimsData(data)
+    reset()
   }
 
   return (

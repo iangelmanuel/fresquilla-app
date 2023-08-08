@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { type FieldValues } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import axiosClient from '../config/axiosClient'
 
 interface FreshProviderProps {
@@ -33,6 +34,8 @@ export interface FreshContextValue {
   }
   contacts: DataContact[]
   claims: DataClaim[]
+  modalContact: boolean
+  modalClaim: boolean
   handleClaimsForm: () => void
   handleHamburgerNavBar: () => void
   setAlert: (alert: { error: boolean, msg: string }) => void
@@ -41,6 +44,9 @@ export interface FreshContextValue {
   getContactsData: () => Promise<void>
   getClaimsData: () => Promise<void>
   deleteContactData: (id: string) => Promise<void>
+  deleteClaimData: (id: string) => Promise<void>
+  handleModalContact: () => void
+  handleModalClaim: () => void
 }
 
 interface Alert {
@@ -58,6 +64,8 @@ const initialValues: FreshContextValue = {
   },
   contacts: [],
   claims: [],
+  modalContact: false,
+  modalClaim: false,
   handleClaimsForm: () => {},
   handleHamburgerNavBar: () => {},
   setAlert: () => {},
@@ -65,7 +73,10 @@ const initialValues: FreshContextValue = {
   sendClaimsData: async () => { await Promise.resolve() },
   getContactsData: async () => { await Promise.resolve() },
   getClaimsData: async () => { await Promise.resolve() },
-  deleteContactData: async () => { await Promise.resolve() }
+  deleteContactData: async () => { await Promise.resolve() },
+  deleteClaimData: async () => { await Promise.resolve() },
+  handleModalContact: () => {},
+  handleModalClaim: () => {}
 }
 
 const initialAlert: Alert = {
@@ -82,6 +93,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
   const [alert, setAlert] = useState<Alert>(initialAlert)
   const [contacts, setContact] = useState<DataContact[]>([])
   const [claims, setClaims] = useState<DataClaim[]>([])
+  const [modalContact, setModalContact] = useState<boolean>(false)
+  const [modalClaim, setModalClaim] = useState<boolean>(false)
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -101,6 +114,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
   const handleHamburgerNavBar = (): void => { setIsOpen(!isOpen) }
   const handleClaimsForm = (): void => { setIsClaimsForm(!isClaimsForm) }
+  const handleModalContact = (): void => { setModalContact(!modalContact) }
+  const handleModalClaim = (): void => { setModalClaim(!modalClaim) }
 
   /// ///////////////////////////// ///
   /// /////// HTTP request /////// ///
@@ -112,8 +127,16 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     try {
       const { data } = await axiosClient.post('/contact', contactData)
       setContact([...contacts, data])
-      setAlert({ error: false, msg: 'Mensaje enviado correctamente' })
-      setTimeout(() => { setAlert({ error: false, msg: '' }) }, 3000)
+      toast.success('La información se envió correctamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
     } catch (error) {
       console.log(error)
     }
@@ -123,8 +146,16 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     try {
       const { data } = await axiosClient.post('/claim', claimData)
       setClaims([...claims, data])
-      setAlert({ error: false, msg: 'Reclamo enviado correctamente' })
-      setTimeout(() => { setAlert({ error: false, msg: '' }) }, 3000)
+      toast.success('La información se envió correctamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
     } catch (error) {
       console.log(error)
     }
@@ -181,11 +212,34 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
     try {
       const { data } = await axiosClient.delete(`/contact/${id}`, config)
-      console.log(data)
       const newData = contacts.filter(contact => contact._id !== data._id)
       setContact(newData)
     } catch (error) {
       console.log(error)
+    } finally {
+      handleModalContact()
+    }
+  }
+
+  const deleteClaimData = async (id: string): Promise<void> => {
+    const token = localStorage.getItem('token') as string
+    if (token === null && token === '') return
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Application: 'application/json'
+      }
+    }
+
+    try {
+      const { data } = await axiosClient.delete(`/claim/${id}`, config)
+      const newData = contacts.filter(contact => contact._id !== data._id)
+      setContact(newData)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      handleModalClaim()
     }
   }
 
@@ -198,6 +252,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         isClaimsForm,
         contacts,
         claims,
+        modalContact,
+        modalClaim,
         setAlert,
         handleClaimsForm,
         handleHamburgerNavBar,
@@ -205,7 +261,10 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         sendClaimsData,
         getContactsData,
         getClaimsData,
-        deleteContactData
+        deleteContactData,
+        deleteClaimData,
+        handleModalContact,
+        handleModalClaim
       }}
     >{children}</FreshContext.Provider>
   )

@@ -6,7 +6,7 @@ interface FreshProviderProps {
 }
 
 export interface FreshContextValue {
-  auth: Auth
+  auth: Auth | null | undefined
   setAuth: (auth: Auth) => void
   loading: boolean
   handleLogout: () => void
@@ -26,23 +26,16 @@ const authValues: Auth = {
   token: ''
 }
 
-const initialValues: FreshContextValue = {
-  auth: authValues,
-  setAuth: () => {},
-  loading: true,
-  handleLogout: () => {}
-}
-
-export const AuthContext = createContext(initialValues)
+export const AuthContext = createContext<FreshContextValue>({} as FreshContextValue)
 
 export default function AuthProvider ({ children }: FreshProviderProps): JSX.Element {
-  const [auth, setAuth] = useState<Auth>(authValues)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [auth, setAuth] = useState<Auth | null>()
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const authAdmin = async (): Promise<void> => {
-      setLoading(true)
       const token = localStorage.getItem('token') as string
+
       if (token === null && token === '') {
         setLoading(false)
         return
@@ -50,8 +43,8 @@ export default function AuthProvider ({ children }: FreshProviderProps): JSX.Ele
 
       const config = {
         headers: {
-          Autorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${token}`,
+          Application: 'application/json'
         }
       }
 
@@ -64,7 +57,6 @@ export default function AuthProvider ({ children }: FreshProviderProps): JSX.Ele
         setLoading(false)
       }
     }
-
     authAdmin()
   }, [])
 

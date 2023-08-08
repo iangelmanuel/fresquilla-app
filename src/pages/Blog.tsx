@@ -34,7 +34,7 @@ export default function Blog (): JSX.Element {
         </motion.section>
 
       )}
-      <main className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-10">
+      <main className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-32">
         {posts?.length !== 0 &&
           posts.map((post: PostKeys) => (
             <Post
