@@ -1,5 +1,5 @@
-import useFresh from '../hook/useFresh'
 import { Switch } from '@headlessui/react'
+import useFresh from '../hook/useFresh'
 
 export default function MyToggle (): JSX.Element {
   const { isClaimsForm, handleClaimsForm } = useFresh()

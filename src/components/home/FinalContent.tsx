@@ -11,7 +11,7 @@ export default function FinalContent (): JSX.Element {
       <section className="mb-6 w-full shrink-0 grow-0 basis-auto lg:mb-0 lg:w-6/12 lg:pl-6">
         <div className="ripple relative overflow-hidden rounded-lg bg-cover bg-[50%] bg-no-repeat shadow-lg">
           <img
-            src="../../../public/img/bgfinalcontent.png"
+            src="public/img/bgfinalcontent.png"
             alt="Louvre"
             className="w-full"
           />
@@ -23,11 +23,7 @@ export default function FinalContent (): JSX.Element {
       </section>
 
       <section className="w-full shrink-0 grow-0 basis-auto lg:w-6/12 lg:pr-6">
-        <h3 className="mb-4 text-2xl font-bold">Exhibition in Paris</h3>
-        <p className="mb-6 text-sm text-neutral-500">
-          Published <u>12.01.2022</u> by
-          <a href="#!">Anna Doe</a>
-        </p>
+        <h3 className="mb-4 text-2xl font-bold">Beneficios de la Fresa</h3>
         <p className="mb-6 text-zinc-600">
           Duis sagittis, turpis in ullamcorper venenatis, ligula nibh porta
           dui, sit amet rutrum enim massa in ante. Curabitur in justo at

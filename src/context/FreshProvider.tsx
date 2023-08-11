@@ -7,21 +7,28 @@ interface FreshProviderProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export interface DataContact {
+export interface DataContacts {
   _id: string
   name: string
   email: string
   phone: string
   message: string
+  createdAt: string
 }
 
-export interface DataClaim {
+export interface DataClaims {
   _id: string
   problem: string
   name: string
   email: string
   phone: string
   message: string
+  createdAt: string
+}
+
+const initialAlert: Alert = {
+  error: false,
+  msg: ''
 }
 
 export interface FreshContextValue {
@@ -32,21 +39,17 @@ export interface FreshContextValue {
     error: boolean
     msg: string
   }
-  contacts: DataContact[]
-  claims: DataClaim[]
-  modalContact: boolean
-  modalClaim: boolean
+  contacts: DataContacts[]
+  claims: DataClaims[]
   handleClaimsForm: () => void
   handleHamburgerNavBar: () => void
   setAlert: (alert: { error: boolean, msg: string }) => void
-  sendContactData: (contactData: DataContact) => Promise<void>
-  sendClaimsData: (claimsData: DataClaim) => Promise<void>
+  sendContactData: (contactData: DataContacts) => Promise<void>
+  sendClaimsData: (claimsData: DataClaims) => Promise<void>
   getContactsData: () => Promise<void>
   getClaimsData: () => Promise<void>
   deleteContactData: (id: string) => Promise<void>
   deleteClaimData: (id: string) => Promise<void>
-  handleModalContact: () => void
-  handleModalClaim: () => void
 }
 
 interface Alert {
@@ -64,8 +67,6 @@ const initialValues: FreshContextValue = {
   },
   contacts: [],
   claims: [],
-  modalContact: false,
-  modalClaim: false,
   handleClaimsForm: () => {},
   handleHamburgerNavBar: () => {},
   setAlert: () => {},
@@ -74,14 +75,7 @@ const initialValues: FreshContextValue = {
   getContactsData: async () => { await Promise.resolve() },
   getClaimsData: async () => { await Promise.resolve() },
   deleteContactData: async () => { await Promise.resolve() },
-  deleteClaimData: async () => { await Promise.resolve() },
-  handleModalContact: () => {},
-  handleModalClaim: () => {}
-}
-
-const initialAlert: Alert = {
-  error: false,
-  msg: ''
+  deleteClaimData: async () => { await Promise.resolve() }
 }
 
 export const FreshContext = createContext(initialValues)
@@ -91,10 +85,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
   const [isTransparent, setIsTransparent] = useState<boolean>(true)
   const [isClaimsForm, setIsClaimsForm] = useState<boolean>(false)
   const [alert, setAlert] = useState<Alert>(initialAlert)
-  const [contacts, setContact] = useState<DataContact[]>([])
-  const [claims, setClaims] = useState<DataClaim[]>([])
-  const [modalContact, setModalContact] = useState<boolean>(false)
-  const [modalClaim, setModalClaim] = useState<boolean>(false)
+  const [contacts, setContacts] = useState<DataContacts[]>([])
+  const [claims, setClaims] = useState<DataClaims[]>([])
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -114,19 +106,15 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
   const handleHamburgerNavBar = (): void => { setIsOpen(!isOpen) }
   const handleClaimsForm = (): void => { setIsClaimsForm(!isClaimsForm) }
-  const handleModalContact = (): void => { setModalContact(!modalContact) }
-  const handleModalClaim = (): void => { setModalClaim(!modalClaim) }
 
   /// ///////////////////////////// ///
   /// /////// HTTP request /////// ///
   /// /////////////////////////// ///
 
-  // TODO: implementar los mensajes
-
   const sendContactData = async (contactData: FieldValues): Promise<void> => {
     try {
       const { data } = await axiosClient.post('/contact', contactData)
-      setContact([...contacts, data])
+      setContacts([...contacts, data])
       toast.success('La información se envió correctamente', {
         position: 'top-right',
         autoClose: 5000,
@@ -173,8 +161,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
 
     try {
-      const { data } = await axiosClient.get<DataContact[]>('/contact', config)
-      setContact(data)
+      const { data } = await axiosClient.get<DataContacts[]>('/contact', config)
+      setContacts(data)
     } catch (error) {
       console.log(error)
     }
@@ -192,7 +180,7 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
 
     try {
-      const { data } = await axiosClient.get('/claim', config)
+      const { data } = await axiosClient.get<DataClaims[]>('/claim', config)
       setClaims(data)
     } catch (error) {
       console.log(error)
@@ -212,12 +200,10 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
     try {
       const { data } = await axiosClient.delete(`/contact/${id}`, config)
-      const newData = contacts.filter(contact => contact._id !== data._id)
-      setContact(newData)
+      const newData = contacts.filter(contact => contact._id !== data.contactDeleted._id)
+      setContacts(newData)
     } catch (error) {
       console.log(error)
-    } finally {
-      handleModalContact()
     }
   }
 
@@ -234,12 +220,10 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
     try {
       const { data } = await axiosClient.delete(`/claim/${id}`, config)
-      const newData = contacts.filter(contact => contact._id !== data._id)
-      setContact(newData)
+      const newData = claims.filter(claim => claim._id !== data.claimDeleted._id)
+      setClaims(newData)
     } catch (error) {
       console.log(error)
-    } finally {
-      handleModalClaim()
     }
   }
 
@@ -252,8 +236,6 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         isClaimsForm,
         contacts,
         claims,
-        modalContact,
-        modalClaim,
         setAlert,
         handleClaimsForm,
         handleHamburgerNavBar,
@@ -262,9 +244,7 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         getContactsData,
         getClaimsData,
         deleteContactData,
-        deleteClaimData,
-        handleModalContact,
-        handleModalClaim
+        deleteClaimData
       }}
     >{children}</FreshContext.Provider>
   )

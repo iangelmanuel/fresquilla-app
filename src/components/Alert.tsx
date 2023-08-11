@@ -1,5 +1,5 @@
-import useFresh from '../hook/useFresh'
 import { motion } from 'framer-motion'
+import useFresh from '../hook/useFresh'
 
 export default function Alert (): JSX.Element {
   const { alert, setAlert } = useFresh()

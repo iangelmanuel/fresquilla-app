@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useFresh from '../hook/useFresh'
 import useAuth from '../hook/useAuth'
@@ -16,6 +16,14 @@ export default function Login (): JSX.Element {
   const { alert, setAlert } = useFresh()
   const { setAuth } = useAuth()
   const navigate = useNavigate()
+
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    if (token !== null && token !== undefined) {
+      navigate('/admin')
+    }
+  }, [token, navigate])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()

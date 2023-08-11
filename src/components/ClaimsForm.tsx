@@ -50,6 +50,7 @@ export default function ClaimsForm (): JSX.Element {
       setAlert({ error: true, msg: 'El télefono debe contener al menos 10 caracteres' })
       return
     }
+
     setAlert({ error: false, msg: '' })
     await sendClaimsData(data)
     reset()

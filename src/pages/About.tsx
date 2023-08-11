@@ -1,5 +1,5 @@
-import Hero from '../components/Hero'
 import { motion } from 'framer-motion'
+import Hero from '../components/Hero'
 
 export const animationParagraph = {
   hidden: { y: -50, opacity: 0 },
@@ -36,7 +36,7 @@ export default function About (): JSX.Element {
                   initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  src="../../../public/img/product1.jpg"
+                  src="/img/product1.jpg"
                   alt="Imagen producto"
                   className="w-60 mb-10 md:mb-0 md:w-full rounded-lg lg:rounded-tr-none lg:rounded-bl-lg"
                 />

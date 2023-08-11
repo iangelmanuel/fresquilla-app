@@ -32,7 +32,7 @@ export default function Hero ({ title, color, desc, width = '100' }: HeroProps):
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="text-sm md:text-xl md:leading-10"
+              className="text-sm md:text-xl font-semibold md:leading-10"
             >{desc}</motion.p>
           </div>
         </div>

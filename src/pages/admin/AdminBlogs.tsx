@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { posts } from '../../data/posts'
 import AdminPost from '../../components/admin/AdminPost'
+import { posts } from '../../data/posts'
 
 export default function AdminApp (): JSX.Element {
   return (

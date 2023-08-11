@@ -1,19 +1,21 @@
 import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
 import useFresh from '../../hook/useFresh'
+import { Dialog, Transition } from '@headlessui/react'
 
 interface ClaimModalProps {
   id: string
+  handleModalToggle: () => void
+  isModalOpen: boolean
 }
 
-export default function DeleteContactModal ({ id }: ClaimModalProps): JSX.Element {
-  const { modalContact, handleModalContact, deleteContactData } = useFresh()
+export default function DeleteContactModal ({ id, isModalOpen, handleModalToggle }: ClaimModalProps): JSX.Element {
+  const { deleteContactData } = useFresh()
   return (
-    <Transition.Root show={modalContact} as={Fragment}>
+    <Transition.Root show={isModalOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={handleModalContact}>
+        onClose={handleModalToggle}>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -44,7 +46,7 @@ export default function DeleteContactModal ({ id }: ClaimModalProps): JSX.Elemen
                 <button
                   type="button"
                   className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={handleModalContact}>
+                  onClick={handleModalToggle}>
                   <span className="sr-only">Cerrar</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ export default function DeleteContactModal ({ id }: ClaimModalProps): JSX.Elemen
                 >Eliminar</button>
                 <button
                   type="button"
-                  onClick={handleModalContact}
+                  onClick={handleModalToggle}
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                 >Cancelar</button>
               </div>

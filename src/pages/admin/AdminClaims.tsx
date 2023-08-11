@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Lottie from 'lottie-react'
 import useFresh from '../../hook/useFresh'
 import ListOfClaim from '../../components/admin/ListOfClaim'
@@ -23,27 +23,29 @@ export default function AdminClaims (): JSX.Element {
         </h2>
       </motion.header>
       <main className="w-full space-y-5 my-10">
-        {claims.length > 0
-          ? claims.map(claim => (
-            <ListOfClaim
-              key={claim._id}
-              claim={claim}
-            />
-          ))
-          : <motion.section
-              initial={{ y: -100 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-xl text-center font-bold mt-10">
-              <p className="text-xl text-center font-bold mt-10">
-                No tienes ninguna solicitud de <span className="text-[#FF0D48]">Reclamo</span> por el momento.
-              </p>
-              <Lottie
-                className="w-1/6 mx-auto"
-                animationData={animationData}
+        <AnimatePresence>
+          {claims.length > 0
+            ? claims.map(claim => (
+              <ListOfClaim
+                key={claim._id}
+                claim={claim}
               />
-            </motion.section>
-        }
+            ))
+            : <motion.section
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-xl text-center font-bold mt-10">
+                <p className="text-xl text-center font-bold mt-10">
+                  No tienes ninguna solicitud de <span className="text-[#FF0D48]">Reclamo</span> por el momento.
+                </p>
+                <Lottie
+                  className="w-1/6 mx-auto"
+                  animationData={animationData}
+                />
+              </motion.section>
+          }
+        </AnimatePresence>
       </main>
     </>
   )

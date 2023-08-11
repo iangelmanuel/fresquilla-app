@@ -9,11 +9,14 @@
 8. [✅] Encontrar la solución para la animación del menu de hamburguesa, la barra de navegación y los formularios.
 9. [✅] Checar que pasa con el hamburger menu cuando se abre en un dispositivo móvil.
 10. [✅] Hacer la parte del Login para el administrador.
-11. [] Mejorar el Atropos de la card de Contactos.
+11. [✅] Mejorar el Atropos de la card de Contactos.
 12. [✅] Implementar react toastify para mostrar mensajes de error y de éxito.
-13. [] Sincronizar los states
-14. [] Solucionar el problema del login
+13. [✅] Sincronizar los states.
+14. [✅] Solucionar el problema del login.
 15. [✅] Detectar los campos vacios del formulario contacto y quejas y reclamos.
+16. [✅] Solucionar el problema del modal de eliminar.
+17. [✅] Arreglar animaciónes del hamburger menu del panel de administrador.
+18. [] Agregar la animación cuando se elimina un contacto o una queja y reclamo.
 
 ** TODO DATABASE:
 1. [✅] Crear base de datos con Node, Express y MongoDB.
@@ -26,5 +29,5 @@
   5.3 [] POST: Enviar desde panel de administrador datos de nuevo blog.
   5.4 [] GET: Recibir datos de los nuevos blog enviados desde el panel de administrador.
   5.5 [✅] GET: Recibir y filtrar Quejas y Reclamos y datos de Contacto en el panel de administrador.
-  5.6 [] Agregar modal para eliminar Quejas y Reclamos y datos de Contacto en el panel de administrador.
-6. Implementar soket.io
+  5.6 [✅] Agregar modal para eliminar Quejas y Reclamos y datos de Contacto en el panel de administrador.
+6. [] Implementar soket.io

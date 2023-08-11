@@ -20,7 +20,6 @@ export default function Blog (): JSX.Element {
         />
       </header>
       { posts?.length !== 0 && (
-
         <motion.section
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -32,7 +31,6 @@ export default function Blog (): JSX.Element {
             Te invitamos a disfrutar de todo nuestro contenido de resetas, postres y muchas cosas divertidas que puedes hacer con las fresas y no lo sabias
           </p>
         </motion.section>
-
       )}
       <main className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-32">
         {posts?.length !== 0 &&

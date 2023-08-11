@@ -4,16 +4,18 @@ import useFresh from '../../hook/useFresh'
 
 interface ClaimModalProps {
   id: string
+  handleModalToggle: () => void
+  isModalOpen: boolean
 }
 
-export default function DeleteClaimModal ({ id }: ClaimModalProps): JSX.Element {
-  const { modalClaim, handleModalClaim, deleteClaimData } = useFresh()
+export default function DeleteClaimModal ({ id, isModalOpen, handleModalToggle }: ClaimModalProps): JSX.Element {
+  const { deleteClaimData } = useFresh()
   return (
-    <Transition.Root show={modalClaim} as={Fragment}>
+    <Transition.Root show={isModalOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={handleModalClaim}>
+        onClose={handleModalToggle}>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -44,7 +46,7 @@ export default function DeleteClaimModal ({ id }: ClaimModalProps): JSX.Element 
                 <button
                   type="button"
                   className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={handleModalClaim}>
+                  onClick={handleModalToggle}>
                   <span className="sr-only">Cerrar</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ export default function DeleteClaimModal ({ id }: ClaimModalProps): JSX.Element 
                 >Eliminar</button>
                 <button
                   type="button"
-                  onClick={handleModalClaim}
+                  onClick={handleModalToggle}
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                 >Cancelar</button>
               </div>

@@ -9,7 +9,7 @@ export default function AdminApp (): JSX.Element {
       className="flex flex-col gap-5 justify-center mt-10"
     >
       <img
-        src="public/img/logo.png"
+        src="/public/img/logo.png"
         alt="Logo Fresquilla"
         className="w-48 h-48 mx-auto"
       />
@@ -26,7 +26,6 @@ export default function AdminApp (): JSX.Element {
         transition={{ duration: 1, delay: 1.5 }}
         className="text-center text-xl lg:text-2xl font-bold"
       >en la derecha las opciones para <span className="text-[#FF0D48]">Administrar</span></motion.p>
-
     </motion.article>
   )
 }

@@ -16,30 +16,32 @@ export default function AdminLayout (): JSX.Element {
         ? (
             <div className="flex flex-col lg:flex-row">
               <aside className="hidden lg:block lg:w-1/6 lg:min-h-screen lg:bg-[#FF0D48] lg:shadow-2xl">
-                <header>
-                  <div className="flex gap-2 justify-center items-center">
-                    <img
-                      src="/img/logo.PNG"
-                      alt="Logo Fresquilla"
-                      className="w-14 h-14"
-                    />
-                    <h1 className="text-center text-2xl text-white font-extrabold mt-5">Fresquilla Admin</h1>
-                  </div>
-                  <p className="text-xl text-white font-bold mt-10 ml-5">Admin Maria Alejandra</p>
-                </header>
-                <nav className="mt-5">
-                  <ul>
-                    {adminNavigation.map(item => (
-                      <AdminNavigation
-                        key={item.path}
-                        item={item}
+                <div className="fixed top-0 left-0">
+                  <header>
+                    <div className="flex gap-2 justify-center items-center">
+                      <img
+                        src="/img/logo.PNG"
+                        alt="Logo Fresquilla"
+                        className="w-14 h-14"
                       />
-                    ))}
-                  </ul>
-                </nav>
-                <footer className="flex justify-center items-end">
-                  <p className="text-center text-white font-semibold mt-10">Fresquilla Admin 2021</p>
-                </footer>
+                      <h1 className="text-center text-2xl text-white font-extrabold mt-5">Fresquilla Admin</h1>
+                    </div>
+                    <p className="text-xl text-white font-bold mt-10 ml-5">Admin Maria Alejandra</p>
+                  </header>
+                  <nav className="mt-5">
+                    <ul>
+                      {adminNavigation.map(item => (
+                        <AdminNavigation
+                          key={item.path}
+                          item={item}
+                        />
+                      ))}
+                    </ul>
+                  </nav>
+                  <footer className="flex justify-center items-end">
+                    <p className="text-center text-white font-semibold mt-10">Fresquilla Admin 2021</p>
+                  </footer>
+                </div>
               </aside>
 
               <motion.nav
@@ -50,7 +52,7 @@ export default function AdminLayout (): JSX.Element {
               >
                 <section className="px-5">
                   <img
-                    src="/public/img/logo.PNG"
+                    src="/img/logo.PNG"
                     alt="Logo Fresquilla"
                     className="w-10 h-10"
                   />
