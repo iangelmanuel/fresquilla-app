@@ -1,22 +1,15 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { LinkBlog } from '../../src/svg/SvgIcons'
+import type { DataBlogs } from '../interfaces/type'
 import { formatedDate } from '../helpers/formatedDate'
+import { LinkBlog } from '../../src/svg/SvgIcons'
 
-export interface PostKeys {
-  post: {
-    id: string
-    title: string
-    desc: string
-    date: string
-    ingredients?: string[]
-    image?: string
-    link?: string
-  }
+interface PostProps {
+  blog: DataBlogs
 }
 
-export default function Post ({ post }: PostKeys): JSX.Element {
-  const { title, desc, date } = post
+export default function Post ({ blog }: PostProps): JSX.Element {
+  const { title, description, createdAt } = blog
   return (
     <motion.article
       initial={{ y: 50, opacity: 0 }}
@@ -31,10 +24,10 @@ export default function Post ({ post }: PostKeys): JSX.Element {
           </Link>
         </div>
         <h2 className="text-xl text-center text-[#F3133D] font-bold my-5">{title}</h2>
-        <p className="text-gray-600 text-xs">{desc}</p>
+        <p className="text-gray-600 text-xs">{description}</p>
       </section>
       <section className="flex justify-between">
-        <p className="text-gray-400 text-sm">{formatedDate(date)}</p>
+        <p className="text-gray-400 text-sm">{formatedDate(createdAt)}</p>
       </section>
     </motion.article>
   )

@@ -2,91 +2,21 @@ import { createContext, useState, useEffect } from 'react'
 import { type FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import axiosClient from '../config/axiosClient'
+import type { FreshContextValue, Alert, DataBlogs, DataClaims, DataContacts } from '../interfaces/type'
 
 interface FreshProviderProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export interface DataContacts {
-  _id: string
-  name: string
-  email: string
-  phone: string
-  message: string
-  createdAt: string
-}
-
-export interface DataClaims {
-  _id: string
-  problem: string
-  name: string
-  email: string
-  phone: string
-  message: string
-  createdAt: string
-}
-
-const initialAlert: Alert = {
-  error: false,
-  msg: ''
-}
-
-export interface FreshContextValue {
-  isOpen: boolean
-  isTransparent: boolean
-  isClaimsForm: boolean
-  alert: {
-    error: boolean
-    msg: string
-  }
-  contacts: DataContacts[]
-  claims: DataClaims[]
-  handleClaimsForm: () => void
-  handleHamburgerNavBar: () => void
-  setAlert: (alert: { error: boolean, msg: string }) => void
-  sendContactData: (contactData: DataContacts) => Promise<void>
-  sendClaimsData: (claimsData: DataClaims) => Promise<void>
-  getContactsData: () => Promise<void>
-  getClaimsData: () => Promise<void>
-  deleteContactData: (id: string) => Promise<void>
-  deleteClaimData: (id: string) => Promise<void>
-}
-
-interface Alert {
-  error: boolean
-  msg: string
-}
-
-const initialValues: FreshContextValue = {
-  isOpen: false,
-  isTransparent: true,
-  isClaimsForm: false,
-  alert: {
-    error: false,
-    msg: ''
-  },
-  contacts: [],
-  claims: [],
-  handleClaimsForm: () => {},
-  handleHamburgerNavBar: () => {},
-  setAlert: () => {},
-  sendContactData: async () => { await Promise.resolve() },
-  sendClaimsData: async () => { await Promise.resolve() },
-  getContactsData: async () => { await Promise.resolve() },
-  getClaimsData: async () => { await Promise.resolve() },
-  deleteContactData: async () => { await Promise.resolve() },
-  deleteClaimData: async () => { await Promise.resolve() }
-}
-
-export const FreshContext = createContext(initialValues)
-
+export const FreshContext = createContext({} as FreshContextValue)
 export default function FreshProvider ({ children }: FreshProviderProps): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isTransparent, setIsTransparent] = useState<boolean>(true)
   const [isClaimsForm, setIsClaimsForm] = useState<boolean>(false)
-  const [alert, setAlert] = useState<Alert>(initialAlert)
+  const [alert, setAlert] = useState<Alert>({} as Alert)
   const [contacts, setContacts] = useState<DataContacts[]>([])
   const [claims, setClaims] = useState<DataClaims[]>([])
+  const [blogs, setBlogs] = useState<DataBlogs[]>([])
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -227,6 +157,44 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
   }
 
+  const sendBlogData = async (blogData: FieldValues): Promise<void> => {
+    const token = localStorage.getItem('token') as string
+    if (token === null && token === '') return
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Application: 'application/json'
+      }
+    }
+
+    try {
+      const { data } = await axiosClient.post('/blog/post-info', blogData, config)
+      setBlogs([...blogs, data])
+      toast.success('La información se envió correctamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getBlogsData = async (): Promise<void> => {
+    try {
+      const { data } = await axiosClient.get<DataBlogs[]>('/blog/post-info')
+      setBlogs(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <FreshContext.Provider
       value={{
@@ -237,6 +205,7 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         contacts,
         claims,
         setAlert,
+        blogs,
         handleClaimsForm,
         handleHamburgerNavBar,
         sendContactData,
@@ -244,7 +213,9 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         getContactsData,
         getClaimsData,
         deleteContactData,
-        deleteClaimData
+        deleteClaimData,
+        sendBlogData,
+        getBlogsData
       }}
     >{children}</FreshContext.Provider>
   )

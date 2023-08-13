@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 interface NavigationProps {
   item: {
     name: string
-    path: string
+    path: `/${string}`
   }
 }
 

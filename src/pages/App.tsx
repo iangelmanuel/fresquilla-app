@@ -7,7 +7,7 @@ export default function App (): JSX.Element {
     <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.5 } }}
+      exit={{ y: '100%' }}
     >
       <header className="mb-20">
         <Hero

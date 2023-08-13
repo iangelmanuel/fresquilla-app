@@ -1,15 +1,22 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import useFresh from '../hook/useFresh'
 import Hero from '../components/Hero'
 import Post from '../components/Post'
 import NoPost from '../components/NoPost'
-import { posts, type PostKeys } from '../data/posts'
 
 export default function Blog (): JSX.Element {
+  const { blogs, getBlogsData } = useFresh()
+
+  useEffect(() => {
+    getBlogsData()
+  }, [])
+
   return (
     <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.5 } }}
+      exit={{ y: '100%' }}
     >
       <header className="mb-10 md:mb-20">
         <Hero
@@ -19,7 +26,7 @@ export default function Blog (): JSX.Element {
           width="40"
         />
       </header>
-      { posts?.length !== 0 && (
+      { blogs?.length !== 0 && (
         <motion.section
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -32,20 +39,24 @@ export default function Blog (): JSX.Element {
           </p>
         </motion.section>
       )}
-      <main className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-32">
-        {posts?.length !== 0 &&
-          posts.map((post: PostKeys) => (
+      {
+        blogs?.length !== 0 &&
+        blogs.map(blog => (
+          <main
+            key={blog._id}
+            className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-32"
+          >
             <Post
-              key={post.id}
-              post={post}
+              blog={blog}
             />
-          ))}
-      </main>
-      <main className="">
-        {posts?.length === 0 && (
+          </main>
+        ))
+      }
+      { blogs?.length === 0 && (
+        <main>
           <NoPost />
-        )}
-      </main>
+        </main>
+      )}
     </motion.article>
   )
 }

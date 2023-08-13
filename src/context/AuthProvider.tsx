@@ -1,35 +1,14 @@
 import { useState, useEffect, createContext } from 'react'
 import axiosClient from '../config/axiosClient'
+import type { AuthContextValue, Auth } from '../interfaces/type'
 
 interface FreshProviderProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export interface FreshContextValue {
-  auth: Auth | null | undefined
-  setAuth: (auth: Auth) => void
-  loading: boolean
-  handleLogout: () => void
-}
-
-interface Auth {
-  _id: string
-  name: string
-  email: string
-  token: string
-}
-
-const authValues: Auth = {
-  _id: '',
-  name: '',
-  email: '',
-  token: ''
-}
-
-export const AuthContext = createContext<FreshContextValue>({} as FreshContextValue)
-
+export const AuthContext = createContext<AuthContextValue>({} as AuthContextValue)
 export default function AuthProvider ({ children }: FreshProviderProps): JSX.Element {
-  const [auth, setAuth] = useState<Auth | null>()
+  const [auth, setAuth] = useState<Auth>({} as Auth)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -62,7 +41,7 @@ export default function AuthProvider ({ children }: FreshProviderProps): JSX.Ele
 
   const handleLogout = (): void => {
     localStorage.removeItem('token')
-    setAuth(authValues)
+    setAuth({} as Auth)
   }
 
   return (

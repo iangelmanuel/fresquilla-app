@@ -8,7 +8,7 @@ interface StartContentProps {
 
 export default function StartContentComponent ({ title, desc, img }: StartContentProps): JSX.Element {
   return (
-    <motion.section
+    <motion.div
       initial={{ opacity: 0, y: -100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -32,6 +32,6 @@ export default function StartContentComponent ({ title, desc, img }: StartConten
           <p className="text-zinc-600 text-center md:text-left">{desc}</p>
         </div>
       </div>
-    </motion.section>
+    </motion.div>
   )
 }

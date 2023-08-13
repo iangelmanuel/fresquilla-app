@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { FreshContext, type FreshContextValue } from '../context/FreshProvider'
+import { FreshContext } from '../context/FreshProvider'
+import type { FreshContextValue } from '../interfaces/type'
 
 export default function useFresh (): FreshContextValue {
   return useContext(FreshContext)

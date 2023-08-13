@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import useFresh from '../../hook/useFresh'
 import AdminHamburgerNavItems from './AdminHamburgerNavItems'
-import { adminNavigation } from '../../data/adminNavigation'
+import { ADMINAV } from '../../data/adminNavigation'
 import { ClosedNavBar } from '../../svg/SvgIcons'
 
 const menuAnimation = {
@@ -40,7 +40,7 @@ export default function AdminHamburgerMenu (): JSX.Element {
       </header>
       <main>
         <ul className="flex flex-col">
-          {adminNavigation.map(item => (
+          {ADMINAV.map(item => (
             <AdminHamburgerNavItems
               key={item.path}
               item={item}

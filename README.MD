@@ -1,4 +1,4 @@
-** TODO:
+** TODO: **
 1. [✅] Agregarle contenido a la página principal con las fotos de los productos. (MAQUETACIÓN)
 2. [] Agregar/Mejorar el contenido de la página a la de Fresquilla. (TEXTO) -> (APP, ABOUT, CONTACT )
 3. [✅] Quitarle el fondo al logo de Fresquilla para que se pueda usar en el menú de navegación. (IMAGEN)
@@ -16,9 +16,16 @@
 15. [✅] Detectar los campos vacios del formulario contacto y quejas y reclamos.
 16. [✅] Solucionar el problema del modal de eliminar.
 17. [✅] Arreglar animaciónes del hamburger menu del panel de administrador.
-18. [] Agregar la animación cuando se elimina un contacto o una queja y reclamo.
+18. [✅] Agregar la animación cuando se elimina un contacto o una queja y reclamo.
+19. [✅] Hacerle una auditoria a todos los archivos para corregir la semantica de html 
+20. [✅] Mover todas las interfaces a type.d.ts menos las de las props
+21. [✅] Utilizar react-hook-form para todos los formularios. { login, contacto, quejas y reclamos }
+20. [✅] Vincular los blogs en la página principal.
+21. [] Arreglar el aside de la página de administrador.
+22. [] Terminar de implementar lo de las imagenes.
+23. [] Crear rutas dinamicas para el acceso a cada uno de los posts.
 
-** TODO DATABASE:
+** TODO DATABASE: **
 1. [✅] Crear base de datos con Node, Express y MongoDB.
 2. [✅] Crear archivos que se utilizarán en el proyecto.
 3. [✅] Crear usuario Administrador.
@@ -26,8 +33,8 @@
 5. [✅] Crear los metodos POST y GET para enviar y recibir información
   5.1 [✅] POST: Enviar datos formulario Contacto.
   5.2 [✅] POST: Enviar datos formulario Quejas y Reclamos.
-  5.3 [] POST: Enviar desde panel de administrador datos de nuevo blog.
-  5.4 [] GET: Recibir datos de los nuevos blog enviados desde el panel de administrador.
+  5.3 [✅] POST: Enviar desde panel de administrador datos de nuevo blog.
+  5.4 [✅] GET: Recibir datos de los nuevos blog enviados desde el panel de administrador.
   5.5 [✅] GET: Recibir y filtrar Quejas y Reclamos y datos de Contacto en el panel de administrador.
   5.6 [✅] Agregar modal para eliminar Quejas y Reclamos y datos de Contacto en el panel de administrador.
 6. [] Implementar soket.io

@@ -3,7 +3,7 @@ import StartContentComponent from './StartContentComponent'
 export default function StartContent (): JSX.Element {
   return (
     <>
-      <article className="container my-24 mx-auto md:px-6">
+      <section className="container my-24 mx-auto md:px-6">
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
@@ -33,7 +33,7 @@ export default function StartContent (): JSX.Element {
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
           img="../../../public/img/strawberry5.jpg"
         />
-      </article>
+      </section>
     </>
   )
 }

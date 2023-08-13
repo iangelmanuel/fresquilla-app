@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import useFresh from '../hook/useFresh'
 import Hero from '../components/Hero'
-import AtroposCard from '../components/AtroposCard'
 import ContactForm from '../components/ContactForm'
 import ClaimsForm from '../components/ClaimsForm'
 import SwitchForm from '../components/SwitchForm'
+import AtroposCard from '../components/AtroposCard'
 import 'atropos/css'
 
 const formAnimation = {
@@ -19,7 +19,7 @@ export default function Contact (): JSX.Element {
     <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.5 } }}
+      exit={{ y: '100%' }}
     >
       <header className="mb-5">
         <Hero

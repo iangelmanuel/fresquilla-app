@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { AuthContext, type FreshContextValue } from '../context/AuthProvider'
+import { AuthContext } from '../context/AuthProvider'
+import type { AuthContextValue } from '../interfaces/type'
 
-export default function useAuth (): FreshContextValue {
+export default function useAuth (): AuthContextValue {
   return useContext(AuthContext)
 }

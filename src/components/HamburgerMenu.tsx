@@ -22,14 +22,14 @@ export default function HamburgerMenu (): JSX.Element {
       className="flex flex-col justify-between md:justify-normal fixed z-10 top-0 right-0 w-3/4 h-full bg-white shadow-2xl"
     >
       <header className="flex justify-between mt-2 mb-10 mx-5">
-        <div className="flex gap-2 items-start">
+        <article className="flex gap-2 items-start">
           <img
             src="public/img/logo.png"
             alt="Logotipo"
             className="w-10 h-10"
           />
           <h2 className="text-xl text-[#FF0D48] font-extrabold underline">Fresquilla</h2>
-        </div>
+        </article>
         <button
           type="button"
           onClick={handleHamburgerNavBar}

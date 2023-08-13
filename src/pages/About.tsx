@@ -11,7 +11,7 @@ export default function About (): JSX.Element {
     <motion.article
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
-      exit={{ y: '100%', transition: { duration: 0.5 } }}
+      exit={{ y: '100%' }}
     >
       <header className="mb-20">
         <Hero
@@ -21,17 +21,16 @@ export default function About (): JSX.Element {
           width="40"
         />
       </header>
-      <motion.article
+      <motion.main
         initial={{ y: -50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="container my-24 mx-auto md:px-6"
       >
-        <section className="mb-32">
-          <div
-            className="block rounded-lg">
+        <article className="mb-32">
+          <div className="block rounded-lg">
             <div className="flex flex-wrap">
-              <div className="mx-auto md:mx-0 shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">
+              <section className="mx-auto md:mx-0 shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">
                 <motion.img
                   initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
@@ -40,9 +39,8 @@ export default function About (): JSX.Element {
                   alt="Imagen producto"
                   className="w-60 mb-10 md:mb-0 md:w-full rounded-lg lg:rounded-tr-none lg:rounded-bl-lg"
                 />
-              </div>
-
-              <div className="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12">
+              </section>
+              <section className="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12">
                 <div className="px-6 py-0 md:py-12 md:px-12">
                   <motion.h2
                     initial={{ y: -50, opacity: 0 }}
@@ -79,11 +77,11 @@ export default function About (): JSX.Element {
                     fugiat perferendis consectetur laudantium.
                   </motion.p>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
-        </section>
-      </motion.article>
+        </article>
+      </motion.main>
     </motion.article>
   )
 }

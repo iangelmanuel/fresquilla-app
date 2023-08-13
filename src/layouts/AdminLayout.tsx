@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import useAuth from '../hook/useAuth'
 import AdminNavigation from '../components/admin/AdminNavigation'
 import AdminHamburgerNav from '../components/admin/AdminHamburgerNav'
-import { adminNavigation } from '../data/adminNavigation'
+import { ADMINAV } from '../data/adminNavigation'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function AdminLayout (): JSX.Element {
@@ -14,7 +14,7 @@ export default function AdminLayout (): JSX.Element {
     <>
       {isAuthenticated
         ? (
-            <div className="flex flex-col lg:flex-row">
+            <article className="flex flex-col lg:flex-row">
               <aside className="hidden lg:block lg:w-1/6 lg:min-h-screen lg:bg-[#FF0D48] lg:shadow-2xl">
                 <div className="fixed top-0 left-0">
                   <header>
@@ -30,7 +30,7 @@ export default function AdminLayout (): JSX.Element {
                   </header>
                   <nav className="mt-5">
                     <ul>
-                      {adminNavigation.map(item => (
+                      {ADMINAV.map(item => (
                         <AdminNavigation
                           key={item.path}
                           item={item}
@@ -48,7 +48,7 @@ export default function AdminLayout (): JSX.Element {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1 }}
-                className="w-full flex justify-between items-center fixed top-0 left-0 lg:hidden bg-white py-2 shadow-lg"
+                className="w-full flex justify-between items-center fixed top-0 left-0 lg:hidden bg-white py-2 shadow-lg z-10"
               >
                 <section className="px-5">
                   <img
@@ -65,7 +65,7 @@ export default function AdminLayout (): JSX.Element {
               <main className="flex flex-col justify-center lg:flex lg:flex-col lg:justify-start mt-20 lg:mt-0 lg:w-5/6 lg:px-10">
                 <Outlet />
               </main>
-            </div>
+            </article>
           )
         : (<Navigate to="/login" />)}
     </>

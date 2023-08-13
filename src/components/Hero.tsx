@@ -4,11 +4,11 @@ interface HeroProps {
   title: string
   color: string
   desc: string
-  width?: string | '100'
+  width?: string | 100
   img?: string
 }
 
-export default function Hero ({ title, color, desc, width = '100' }: HeroProps): JSX.Element {
+export default function Hero ({ title, color, desc, width = 100 }: HeroProps): JSX.Element {
   return (
     <article
       className="relative overflow-hidden bg-cover bg-no-repeat"

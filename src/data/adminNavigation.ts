@@ -1,9 +1,9 @@
-interface AdminNavigation {
+interface AdmiNav {
   name: string
-  path: string
+  path: `/${string}`
 }
 
-export const adminNavigation: AdminNavigation[] = [
+export const ADMINAV: AdmiNav[] = [
   {
     name: 'Crear blog',
     path: '/admin/create-blog'
