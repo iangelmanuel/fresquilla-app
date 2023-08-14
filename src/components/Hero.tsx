@@ -15,7 +15,7 @@ export default function Hero ({ title, color = '', desc = '', width = 100 }: Her
       className="relative overflow-hidden bg-cover bg-no-repeat"
       style={{
         backgroundPosition: '50%',
-        backgroundImage: "url('../../public/img/background.jpg')",
+        backgroundImage: "url('/img/background.jpg')",
         height: `${width}vh`,
         width: '100%'
       }}
