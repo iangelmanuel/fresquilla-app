@@ -7,31 +7,31 @@ export default function StartContent (): JSX.Element {
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
-          img="/img/strawberry1.png"
+          img="/img/strawberry1.PNG"
         />
 
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
-          img="/img/strawberry2.jpg"
+          img="/img/strawberry2.JPG"
         />
 
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
-          img="/img/strawberry3.jpg"
+          img="/img/strawberry3.JPG"
         />
 
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
-          img="/img/strawberry4.jpg"
+          img="/img/strawberry4.JPG"
         />
 
         <StartContentComponent
           title="Thats the news!"
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quae nulla saepe rerum aspernatur odio amet perferendis tempora mollitia? Ratione unde magni omnis quaerat blanditiis cumque dolore placeat rem dignissimos?"
-          img="/img/strawberry5.jpg"
+          img="/img/strawberry5.JPG"
         />
       </section>
     </>

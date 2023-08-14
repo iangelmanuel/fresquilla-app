@@ -11,7 +11,7 @@ export default function FinalContent (): JSX.Element {
       <section className="mb-6 w-full shrink-0 grow-0 basis-auto lg:mb-0 lg:w-6/12 lg:pl-6">
         <div className="ripple relative overflow-hidden rounded-lg bg-cover bg-[50%] bg-no-repeat shadow-lg">
           <img
-            src="/img/bgfinalcontent.png"
+            src="/img/bgfinalcontent.PNG"
             alt="Louvre"
             className="w-full"
           />

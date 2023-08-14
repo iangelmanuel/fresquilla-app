@@ -20,7 +20,7 @@ export default function Header (): JSX.Element {
       >
         <Link to="/" className="flex items-center gap-2">
           <img
-            src="/img/logo.png"
+            src="/img/logo.PNG"
             alt="Logotipo"
             className="w-10 h-10"
           />
