@@ -24,7 +24,7 @@ export default function HamburgerMenu (): JSX.Element {
       <header className="flex justify-between mt-2 mb-10 mx-5">
         <article className="flex gap-2 items-start">
           <img
-            src="public/img/logo.png"
+            src="/img/logo.png"
             alt="Logotipo"
             className="w-10 h-10"
           />

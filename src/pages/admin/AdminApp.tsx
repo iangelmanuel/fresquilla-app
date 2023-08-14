@@ -10,7 +10,7 @@ export default function AdminApp (): JSX.Element {
     >
       <section>
         <img
-          src="/public/img/logo.png"
+          src="/img/logo.png"
           alt="Logo Fresquilla"
           className="w-48 h-48 mx-auto"
         />

@@ -43,7 +43,7 @@ export default function Login (): JSX.Element {
         >
           <section className="md:flex md:items-center">
             <img
-              src="/public/img/logoV2.jpg"
+              src="/img/logoV2.jpg"
               alt="logo v2"
               className="w-60 h-60 object-cover"
             />

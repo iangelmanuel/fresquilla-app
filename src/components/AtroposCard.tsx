@@ -10,7 +10,7 @@ export default function AtroposCard (): JSX.Element {
       <article className="md:flex my-5">
         <section className="fixed top-0 left-0">
           <img
-            src="public/img/card2.png"
+            src="/img/card2.png"
             alt="card"
             className="w-full rounded-lg"
           />
