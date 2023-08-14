@@ -32,10 +32,6 @@ export const descValidation = {
   minLength: {
     value: 10,
     message: 'El campo descripción debe tener al menos 10 caracteres'
-  },
-  maxLength: {
-    value: 255,
-    message: 'El campo descripción debe tener máximo 255 caracteres'
   }
 }
 
@@ -45,7 +41,7 @@ export const linkValidation = {
     message: 'El campo link debe tener al menos 5 caracteres'
   },
   maxLength: {
-    value: 30,
+    value: 200,
     message: 'El campo link debe tener máximo 30 caracteres'
   }
 }

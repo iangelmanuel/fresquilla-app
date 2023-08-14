@@ -1,23 +1,76 @@
+import { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { useDropzone, type FileRejection, type DropzoneOptions } from 'react-dropzone'
+import { toast } from 'react-toastify'
 import useFresh from '../../hook/useFresh'
-import { titleValidation, ingredientsValidation, descValidation, linkValidation, imageValidation } from '../../validation/blogValidation'
+import { titleValidation, ingredientsValidation, descValidation, linkValidation } from '../../validation/blogValidation'
 import type { DataBlogs } from '../../interfaces/type'
 
 export default function AdminFormBlog (): JSX.Element {
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
   const { sendBlogData } = useFresh()
+  const [image, setImage] = useState<string>('')
 
-  const onSubmit = handleSubmit(async ({ title, ingredients, description, link, image }) => {
+  const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]): void => {
+    if (fileRejections.length > 0) {
+      console.log(fileRejections)
+      toast.error('¡Solo se permiten imagenes!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      setImage(reader.result as string)
+    }
+    reader.readAsDataURL(acceptedFiles[0])
+  }, [])
+
+  const dropzoneOptions: DropzoneOptions = {
+    onDrop,
+    accept: {
+      'image/jpeg': ['.jpeg', '.jpg'],
+      'image/png': ['.png']
+    },
+    maxSize: 100000000
+  }
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone(dropzoneOptions)
+
+  const onSubmit = handleSubmit(async ({ title, ingredients, description, links }) => {
+    if (image.length === 0) {
+      toast.error('¡El campo imagen es requerido!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+      return
+    }
+
     const newData = {
       title,
       ingredients,
       description,
-      link,
-      image: image[0].name
+      links,
+      image
     }
 
     await sendBlogData(newData as DataBlogs)
+    setImage('')
     reset()
   })
 
@@ -77,7 +130,7 @@ export default function AdminFormBlog (): JSX.Element {
           <input
             type="text"
             id="ingredients"
-            {...register('link', linkValidation)}
+            {...register('links', linkValidation)}
             placeholder="Ej. https://www.fresquilla.com/blog/curiosidades-fresas"
             className="border-2 border-gray-300 rounded-lg p-2"
           />
@@ -85,14 +138,27 @@ export default function AdminFormBlog (): JSX.Element {
         </section>
 
         <section className="flex gap-1 flex-col mb-6">
-          <label htmlFor="image" className="text-lg font-bold">Imagen</label>
-          <input
-            type="file"
-            id="image"
-            {...register('image', imageValidation)}
-            className="border-2 border-gray-300 rounded-lg p-2"
-          />
-          {(errors.image !== null) && <span className="text-red-500">{errors.image?.message as string}</span>}
+          <label htmlFor="image" className="text-lg font-bold">
+            Imagen <span className="font-normal">(Campo obligatorio)</span>
+          </label>
+          <div
+            {...getRootProps()}
+            className="flex gap-5 flex-col justify-center items-center border border-gray-300 p-2 rounded-lg cursor-pointer"
+          >
+            <input {...getInputProps()} />
+            {
+              isDragActive
+                ? <p>Suelta la imagen aquí</p>
+                : <p>Arrastra la imagen aquí o haz click para seleccionarla</p>
+            }
+            {image?.length > 0 && (
+              <img
+                src={image}
+                alt="Imagen subida"
+                className="w-40 h-40 object-cover rounded-lg"
+              />
+            )}
+          </div>
         </section>
 
         <section className="flex justify-end">

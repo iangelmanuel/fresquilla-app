@@ -23,7 +23,7 @@ export interface DataBlogs {
   title: string
   ingredients: string
   description: string
-  link: string
+  links: string
   image: string
   createdAt: string
 }
@@ -37,16 +37,12 @@ export interface FreshContextValue {
   isOpen: boolean
   isTransparent: boolean
   isClaimsForm: boolean
-  alert: {
-    error: boolean
-    msg: string
-  }
   contacts: DataContacts[]
   claims: DataClaims[]
   blogs: DataBlogs[]
+  blog: DataBlogs
   handleClaimsForm: () => void
   handleHamburgerNavBar: () => void
-  setAlert: (alert: { error: boolean, msg: string }) => void
   sendContactData: (contactData: DataContacts) => Promise<void>
   sendClaimsData: (claimsData: DataClaims) => Promise<void>
   getContactsData: () => Promise<void>
@@ -55,6 +51,7 @@ export interface FreshContextValue {
   deleteClaimData: (id: string) => Promise<void>
   sendBlogData: (blogData: DataBlogs) => Promise<void>
   getBlogsData: () => Promise<void>
+  getBlogData: (id: string) => Promise<void>
 }
 
 // AuthProvider

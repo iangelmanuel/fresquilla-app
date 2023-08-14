@@ -1,5 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { ToastContainer } from 'react-toastify'
 import useAuth from '../hook/useAuth'
 import AdminNavigation from '../components/admin/AdminNavigation'
 import AdminHamburgerNav from '../components/admin/AdminHamburgerNav'
@@ -16,7 +17,7 @@ export default function AdminLayout (): JSX.Element {
         ? (
             <article className="flex flex-col lg:flex-row">
               <aside className="hidden lg:block lg:w-1/6 lg:min-h-screen lg:bg-[#FF0D48] lg:shadow-2xl">
-                <div className="fixed top-0 left-0">
+                <div className="sticky top-0 left-0">
                   <header>
                     <div className="flex gap-2 justify-center items-center">
                       <img
@@ -39,7 +40,7 @@ export default function AdminLayout (): JSX.Element {
                     </ul>
                   </nav>
                   <footer className="flex justify-center items-end">
-                    <p className="text-center text-white font-semibold mt-10">Fresquilla Admin 2021</p>
+                    <p className="text-center text-white font-semibold mt-10">Fresquilla Admin { new Date().getFullYear() }</p>
                   </footer>
                 </div>
               </aside>
@@ -68,6 +69,7 @@ export default function AdminLayout (): JSX.Element {
             </article>
           )
         : (<Navigate to="/login" />)}
+      <ToastContainer />
     </>
   )
 }

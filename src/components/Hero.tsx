@@ -2,13 +2,14 @@ import { motion } from 'framer-motion'
 
 interface HeroProps {
   title: string
-  color: string
-  desc: string
+  color?: string
+  desc?: string
   width?: string | 100
-  img?: string
 }
 
-export default function Hero ({ title, color, desc, width = 100 }: HeroProps): JSX.Element {
+export default function Hero ({ title, color = '', desc = '', width = 100 }: HeroProps): JSX.Element {
+  const isDesc = desc !== ''
+  const isColor = color !== ''
   return (
     <article
       className="relative overflow-hidden bg-cover bg-no-repeat"
@@ -27,13 +28,15 @@ export default function Hero ({ title, color, desc, width = 100 }: HeroProps): J
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="md:mt-2 mb-3 text-4xl font-bold tracking-tight md:text-6xl xl:text-7xl"
-            >{title} <span className="text-[#FF0D48]">{color}</span></motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="text-sm md:text-xl font-semibold md:leading-10"
-            >{desc}</motion.p>
+            >{title} {isColor && (<span className="text-[#FF0D48]">{color}</span>)}</motion.h1>
+            {isDesc && (
+              <motion.p
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className="text-sm md:text-xl font-semibold md:leading-10"
+              >{desc}</motion.p>
+            )}
           </div>
         </div>
       </section>

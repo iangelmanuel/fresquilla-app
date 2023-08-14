@@ -1,15 +1,17 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useParams } from 'react-router-dom'
 import useFresh from '../hook/useFresh'
 import Hero from '../components/Hero'
 import Post from '../components/Post'
-import NoPost from '../components/NoPost'
 
 export default function Blog (): JSX.Element {
-  const { blogs, getBlogsData } = useFresh()
+  const { id } = useParams()
+  const { blog, getBlogData } = useFresh()
+  const isBlogExists = blog !== null
 
   useEffect(() => {
-    getBlogsData()
+    getBlogData(id as string)
   }, [])
 
   return (
@@ -18,45 +20,15 @@ export default function Blog (): JSX.Element {
       animate={{ width: '100%' }}
       exit={{ y: '100%' }}
     >
-      <header className="mb-10 md:mb-20">
+      <header className="mb-20">
         <Hero
-          title="Bienvenido al apartado de"
-          color="Blog"
-          desc="Aquí se subirán resetas, trucos y de mas que puedes hacer con nuestras fresas"
-          width="40"
+          title={blog.title}
+          width="30"
         />
       </header>
-      { blogs?.length !== 0 && (
-        <motion.section
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="mb-10 p-5 bg-[#F3133D] shadow-lg"
-        >
-          <h1 className="text-center text-white text-4xl font-extrabold mb-3">¡Nuestro Blog!</h1>
-          <p className="text-center text-white text-sm md:text-xl md:font-bold">
-            Te invitamos a disfrutar de todo nuestro contenido de resetas, postres y muchas cosas divertidas que puedes hacer con las fresas y no lo sabias
-          </p>
-        </motion.section>
-      )}
-      {
-        blogs?.length !== 0 &&
-        blogs.map(blog => (
-          <main
-            key={blog._id}
-            className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 space-x-5 mb-32"
-          >
-            <Post
-              blog={blog}
-            />
-          </main>
-        ))
-      }
-      { blogs?.length === 0 && (
-        <main>
-          <NoPost />
-        </main>
-      )}
+      <main className="w-full">
+        {isBlogExists && <Post blog={blog} /> }
+      </main>
     </motion.article>
   )
 }

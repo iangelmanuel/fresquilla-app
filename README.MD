@@ -21,9 +21,17 @@
 20. [✅] Mover todas las interfaces a type.d.ts menos las de las props
 21. [✅] Utilizar react-hook-form para todos los formularios. { login, contacto, quejas y reclamos }
 20. [✅] Vincular los blogs en la página principal.
-21. [] Arreglar el aside de la página de administrador.
-22. [] Terminar de implementar lo de las imagenes.
-23. [] Crear rutas dinamicas para el acceso a cada uno de los posts.
+21. [✅] Arreglar el aside de la página de administrador.
+22. [✅] Terminar de implementar lo de las imagenes.
+23. [✅] Crear rutas dinamicas para el acceso a cada uno de los posts.
+24. [✅] Borrar los archivos que no se estan utilizando (Lottie).
+25. [✅] Estilar el post individual.
+26. [] Agregar la funcionalidad de eliminar un post al administrador.
+27. [] Agregar la funcionalidad de editar un post al administrador.
+28. [✅] Estilar el dropzone.
+29. [✅] Arreglar el problema de base64 del formulario de crear blog.
+30. [✅] Auditoria de código 2.0.
+31. [] Agregar funcionalidad de mandar arreglo de ingredientes, links y separar los parrafos.
 
 ** TODO DATABASE: **
 1. [✅] Crear base de datos con Node, Express y MongoDB.

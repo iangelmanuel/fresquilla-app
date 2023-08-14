@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import { type FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import axiosClient from '../config/axiosClient'
-import type { FreshContextValue, Alert, DataBlogs, DataClaims, DataContacts } from '../interfaces/type'
+import type { FreshContextValue, DataBlogs, DataClaims, DataContacts } from '../interfaces/type'
 
 interface FreshProviderProps {
   children: JSX.Element | JSX.Element[]
@@ -13,10 +13,10 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isTransparent, setIsTransparent] = useState<boolean>(true)
   const [isClaimsForm, setIsClaimsForm] = useState<boolean>(false)
-  const [alert, setAlert] = useState<Alert>({} as Alert)
   const [contacts, setContacts] = useState<DataContacts[]>([])
   const [claims, setClaims] = useState<DataClaims[]>([])
   const [blogs, setBlogs] = useState<DataBlogs[]>([])
+  const [blog, setBlog] = useState<DataBlogs>({} as DataBlogs)
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -164,12 +164,12 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
-        Application: 'application/json'
+        'Content-Type': 'multipart/form-data'
       }
     }
 
     try {
-      const { data } = await axiosClient.post('/blog/post-info', blogData, config)
+      const { data } = await axiosClient.post('/blog/blogs-data', blogData, config)
       setBlogs([...blogs, data])
       toast.success('La información se envió correctamente', {
         position: 'top-right',
@@ -188,8 +188,17 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
   const getBlogsData = async (): Promise<void> => {
     try {
-      const { data } = await axiosClient.get<DataBlogs[]>('/blog/post-info')
+      const { data } = await axiosClient.get<DataBlogs[]>('/blog/blogs-data')
       setBlogs(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getBlogData = async (id: string): Promise<void> => {
+    try {
+      const { data } = await axiosClient.get<DataBlogs>(`/blog/blog/${id}`)
+      setBlog(data)
     } catch (error) {
       console.log(error)
     }
@@ -198,14 +207,13 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
   return (
     <FreshContext.Provider
       value={{
-        alert,
         isTransparent,
         isOpen,
         isClaimsForm,
         contacts,
         claims,
-        setAlert,
         blogs,
+        blog,
         handleClaimsForm,
         handleHamburgerNavBar,
         sendContactData,
@@ -215,7 +223,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         deleteContactData,
         deleteClaimData,
         sendBlogData,
-        getBlogsData
+        getBlogsData,
+        getBlogData
       }}
     >{children}</FreshContext.Provider>
   )

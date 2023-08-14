@@ -6,10 +6,11 @@ import AuthProvider from './context/AuthProvider'
 
 // Public Pages
 import App from './pages/App'
-import Blog from './pages/Blog'
+import Blogs from './pages/Blogs'
 import Contact from './pages/Contact'
 import About from './pages/About'
 import Login from './pages/Login'
+import Blog from './pages/Blog'
 
 // Admin Pages
 import AdminApp from './pages/admin/AdminApp'
@@ -28,7 +29,8 @@ export default function Router (): JSX.Element {
               <Route path="/" element={<App />} />
               <Route path="/nosotros" element={<About />} />
               <Route path="/contacto" element={<Contact />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog" element={<Blogs />} />
+              <Route path="/blog/:id" element={<Blog />} />
             </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/admin" element={<AdminLayout />}>
