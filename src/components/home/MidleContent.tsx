@@ -28,7 +28,7 @@ export default function MiddleContent ({ item }: MiddleContentProps): JSX.Elemen
         variants={animationMC}
         initial="hidden"
         whileInView="visible"
-        className="text-xl font-bold mb-3"
+        className="text-xl text-white font-bold mb-3"
       >
         {item.title}
       </motion.h4>
@@ -36,7 +36,7 @@ export default function MiddleContent ({ item }: MiddleContentProps): JSX.Elemen
         variants={animationMC}
         initial="hidden"
         whileInView="visible"
-        className="text-sm"
+        className="text-sm text-zinc-50"
       >
         {item.description}
       </motion.p>

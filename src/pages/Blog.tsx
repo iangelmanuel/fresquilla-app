@@ -12,7 +12,7 @@ export default function Blog (): JSX.Element {
 
   useEffect(() => {
     getBlogData(id as string)
-  }, [])
+  }, [id])
 
   return (
     <motion.article
@@ -20,15 +20,15 @@ export default function Blog (): JSX.Element {
       animate={{ width: '100%' }}
       exit={{ y: '100%' }}
     >
-      <header className="mb-20">
+      <section className="mb-20">
         <Hero
           title={blog.title}
           width="30"
         />
-      </header>
-      <main className="w-full">
+      </section>
+      <section className="w-full">
         {isBlogExists && <Post blog={blog} /> }
-      </main>
+      </section>
     </motion.article>
   )
 }

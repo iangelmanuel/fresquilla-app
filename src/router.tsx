@@ -18,6 +18,7 @@ import AdminCreateBlog from './pages/admin/AdminCreateBlog'
 import AdminBlogs from './pages/admin/AdminBlogs'
 import AdminContacts from './pages/admin/AdminContacts'
 import AdminClaims from './pages/admin/AdminClaims'
+import AdminBlog from './pages/admin/AdminBlog'
 
 export default function Router (): JSX.Element {
   return (
@@ -39,6 +40,7 @@ export default function Router (): JSX.Element {
                 <Route path="/admin/blogs" element={<AdminBlogs />} />
                 <Route path="/admin/contacts" element={<AdminContacts />} />
                 <Route path="/admin/claims" element={<AdminClaims />} />
+                <Route path="/admin/blog/:id" element={<AdminBlog />} />
               </Route>
           </Routes>
         </Routers>

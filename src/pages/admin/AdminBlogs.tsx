@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useFresh from '../../hook/useFresh'
-import AdminPost from '../../components/admin/AdminPost'
+import AdminBlogPost from '../../components/admin/AdminBlogPost'
 import NoPost from '../../components/NoPost'
 
 export default function AdminApp (): JSX.Element {
@@ -30,7 +30,7 @@ export default function AdminApp (): JSX.Element {
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {blogs.length > 0 &&
               blogs.map((blog, index) => (
-                <AdminPost
+                <AdminBlogPost
                   key={blog._id}
                   blog={blog}
                   index={index}

@@ -11,7 +11,6 @@ export default function MyToggle (): JSX.Element {
         isClaimsForm ? 'bg-[#FF0D48]' : 'bg-gray-200'
       } relative inline-flex h-6 w-11 items-center rounded-full`}
     >
-      <span className="sr-only">Enable notifications</span>
       <span
         className={`${
           isClaimsForm ? 'translate-x-6' : 'translate-x-1'

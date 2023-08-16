@@ -1,4 +1,4 @@
-import { Outlet, Navigate } from 'react-router-dom'
+import { Outlet, Navigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
 import useAuth from '../hook/useAuth'
@@ -8,7 +8,7 @@ import { ADMINAV } from '../data/adminNavigation'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function AdminLayout (): JSX.Element {
-  const { auth, loading } = useAuth()
+  const { auth, loading, handleLogout } = useAuth()
   const isAuthenticated = auth?._id !== undefined && auth?._id !== null && auth?._id !== ''
   if (loading) return (<h1>Cargando...</h1>)
   return (
@@ -17,17 +17,19 @@ export default function AdminLayout (): JSX.Element {
         ? (
             <article className="flex flex-col lg:flex-row">
               <aside className="hidden lg:block lg:w-1/6 lg:min-h-screen lg:bg-[#FF0D48] lg:shadow-2xl">
-                <div className="sticky top-0 left-0">
-                  <header>
+                <section className="flex flex-col sticky top-0 left-0">
+                  <header className="bg-[#C21116] pb-3 rounded-lg shadow-xl">
                     <div className="flex gap-2 justify-center items-center">
                       <img
                         src="/img/logo.PNG"
                         alt="Logo Fresquilla"
-                        className="w-14 h-14"
+                        className="w-20 h-20"
                       />
                       <h1 className="text-center text-2xl text-white font-extrabold mt-5">Fresquilla Admin</h1>
                     </div>
-                    <p className="text-xl text-white font-bold mt-10 ml-5">Admin Maria Alejandra</p>
+                    <div>
+                      <p className="text-xl text-white font-bold mt-10 ml-5">Admin: Maria Alejandra</p>
+                    </div>
                   </header>
                   <nav className="mt-5">
                     <ul>
@@ -39,10 +41,36 @@ export default function AdminLayout (): JSX.Element {
                       ))}
                     </ul>
                   </nav>
-                  <footer className="flex justify-center items-end">
-                    <p className="text-center text-white font-semibold mt-10">Fresquilla Admin { new Date().getFullYear() }</p>
+                  <footer className="flex gap-3 flex-col items-center mt-10">
+                    <div className="flex">
+                      <div>
+                        <Link
+                          to="/"
+                        >
+                          <motion.p
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={handleLogout}
+                            className="text-white font-bold py-2 px-5 hover:bg-[#C21116] hover:shadow-xl hover:rounded-full hover:cursor-pointer"
+                          >
+                            Ir a Fresquilla
+                          </motion.p>
+                        </Link>
+                      </div>
+                      <div>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={handleLogout}
+                          className="text-white font-bold py-2 px-5 hover:bg-[#C21116] hover:shadow-xl hover:rounded-full hover:cursor-pointer"
+                        >Cerrar Sesión</motion.button>
+                      </div>
+                    </div>
+                    <div className="bg-[#C21116] w-full p-2 shadow-2xl">
+                      <p className="text-center text-white font-semibold">Fresquilla Admin { new Date().getFullYear() }</p>
+                    </div>
                   </footer>
-                </div>
+                </section>
               </aside>
 
               <motion.nav

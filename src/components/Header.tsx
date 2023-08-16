@@ -18,12 +18,14 @@ export default function Header (): JSX.Element {
         transition={{ duration: 0.8 }}
         className="flex items-center gap-3"
       >
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/login">
           <img
             src="/img/logo.PNG"
             alt="Logotipo"
             className="w-10 h-10"
           />
+        </Link>
+        <Link to="/" className="flex items-center gap-2">
           <h1 className={`${isTransparent ? 'text-white' : 'text-[#FF0D48]'} text-2xl  font-extrabold`}>Fresquilla</h1>
         </Link>
       </motion.section>

@@ -21,9 +21,9 @@ export interface DataClaims {
 export interface DataBlogs {
   _id: string
   title: string
-  ingredients: string
-  description: string
-  links: string
+  ingredients: string[]
+  description: string[]
+  links: string[]
   image: string
   createdAt: string
 }

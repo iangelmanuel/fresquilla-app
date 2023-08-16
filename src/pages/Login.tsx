@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import useAuth from '../hook/useAuth'
 import axiosClient from '../config/axiosClient'
@@ -31,24 +31,22 @@ export default function Login (): JSX.Element {
 
   return (
     <main className="mt-10">
-      <article className="container mx-auto flex gap-10 flex-col items-center">
+      <article className="flex gap-y-20 flex-col items-center">
         <section className="w-96">
           <h1 className="text-center text-4xl font-extrabold">
             Iniciar Sesión como <span className="text-[#FF0D48]">Administrador en Fresquilla</span>
           </h1>
         </section>
 
-        <div
-          className="md:flex gap-10 items-center justify-center bg-zinc-100 px-5 py-10 md:p-20 rounded-lg shadow-lg"
-        >
-          <section className="md:flex md:items-center">
+        <section className="bg-white px-14 py-10 rounded-lg shadow-xl space-y-10">
+          <div className="md:flex md:items-center">
             <img
-              src="/img/logoV2.jpg"
+              src="/img/logoV2.JPG"
               alt="logo v2"
               className="w-60 h-60 object-cover"
             />
-          </section>
-          <section>
+          </div>
+          <div>
             <form onSubmit={onSubmit} noValidate>
               <div className="flex flex-col justify-center mb-6">
                 <label htmlFor="email" className="font-bold">Correo</label>
@@ -57,7 +55,7 @@ export default function Login (): JSX.Element {
                   id="email"
                   {...register('email', emailValidation)}
                   placeholder="Email del administrador"
-                  className="border-2 border-gray-300 rounded-lg p-2"
+                  className="border-2 border-gray-300 rounded-lg shadow-lg p-2"
                 />
                 {(errors.email != null) && <span className="text-sm text-red-500">{errors.email?.message as string}</span>}
               </div>
@@ -68,7 +66,7 @@ export default function Login (): JSX.Element {
                   id="password"
                   {...register('password', passwordValidation)}
                   placeholder="Contraseña del administrador"
-                  className="w-full border-2 border-gray-300 rounded-lg p-2"
+                  className="w-full border-2 border-gray-300 rounded-lg shadow-lg p-2"
                 />
                 {(errors.password != null) && <span className="text-sm text-red-500">{errors.password?.message as string}</span>}
               </div>
@@ -80,11 +78,13 @@ export default function Login (): JSX.Element {
                 />
               </div>
             </form>
-          </section>
-        </div>
+          </div>
+        </section>
 
         <section className="bg-red-300 border-l-8 border-red-500 p-5 rounded shadow-lg">
-          <p className="text-lg text-center text-zinc-700 font-bold">¡Si no eres propietario o una persona autorizada regresa a la página principal!</p>
+          <p className="text-lg text-center text-zinc-700 font-bold">
+            ¡Si no eres propietario o una persona autorizada regresa a la <Link to="/" className="text-[#FF0D48] hover:underline">página principal!</Link>
+          </p>
         </section>
       </article>
     </main>

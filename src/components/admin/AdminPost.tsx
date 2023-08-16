@@ -1,54 +1,90 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import type { DataBlogs } from '../../interfaces/type'
+import { IngredientsList } from '../../svg/SvgIcons'
 import { formatedDate } from '../../helpers/formatedDate'
-import { LinkBlog } from '../../svg/SvgIcons'
+import type { DataBlogs } from '../../interfaces/type'
+
+// TODO: Estilar
 
 interface AdminPostProps {
   blog: DataBlogs
-  index: number
 }
 
-const sectionVariants = {
-  hidden: {
-    opacity: 0,
-    y: 50
-  },
-  visible: ({ delay }: { delay: number }) => ({
-    opacity: 1,
-    transition: {
-      delay
-    }
-  }),
-  exit: {
-    opacity: 0
-  }
-}
-
-export default function AdminPost ({ blog, index }: AdminPostProps): JSX.Element {
-  const { _id, title, description, createdAt } = blog
+export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
+  const { title, ingredients, description, links, image, createdAt } = blog
+  const isIngredients = ingredients?.length > 0
+  const isLink = links?.length > 0
+  const handleClick = (): void => { window.history.back() }
   return (
-    <motion.section
-      variants={sectionVariants}
-      custom={{ delay: (index + 1) * 0.1 }}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      layoutId={_id}
-      className="bg-zinc-50 shadow-lg rounded-lg px-8 pb-8 mb-4"
-    >
-      <div className="mb-4">
-        <div className="flex justify-end items-end mt-5">
-          <Link to="#">
-            <LinkBlog />
-          </Link>
+    <article className="container mx-auto px-4 py-4 md:px-0 md:max-w-5xl flex flex-col bg-white rounded-xl shadow-xl mb-20">
+      <section className="flex justify-around items-center md:my-10">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleClick}
+          className="bg-[#FF0D48] text-white font-bold py-2 px-5 hover:bg-[#C21116] shadow-xl rounded-full hover:cursor-pointer"
+        >Volver</motion.button>
+        <p className="text-end text-gray-500 text-sm">Publicado: {formatedDate(createdAt)}</p>
+      </section>
+
+      <section className="flex gap-5 flex-col justify-center items-center my-10">
+        <div className="w-full md:w-2/5 mb-10">
+          <img
+            src={image}
+            alt={`Imagen de ${title}`}
+            className="w-full h-auto object-cover rounded-lg shadow-lg"
+          />
         </div>
-        <h2 className="text-xl text-center text-[#F3133D] font-bold my-5">{title}</h2>
-        <p className="text-gray-600 text-xs truncate">{description}</p>
-      </div>
-      <div className="flex justify-between">
-        <p className="text-gray-400 text-sm">{formatedDate(createdAt)}</p>
-      </div>
-    </motion.section>
+        <div>
+          <h3 className="text-3xl font-bold text-center">{title}</h3>
+        </div>
+        <div className="w-full md:w-3/5 flex flex-col gap-10">
+          {description?.map((paragraph, index) => (
+            <div key={index}>
+              <p className="text-gray-600 text-base md:text-xl">{paragraph}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl">
+        {isIngredients && (
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold">Ingredientes para la receta:</h2>
+          </div>
+        )}
+        <ul className="grid grid-cols-1 gap-2">
+          {isIngredients &&
+            ingredients.map((ingredient, index) => (
+              <li
+                key={index}
+                className="flex items-center bg-[#FF0D48] rounded-lg shadow-lg p-4"
+              >
+                <IngredientsList />
+                <p className="text-base text-white font-bold">{ingredient}</p>
+              </li>
+            ))}
+        </ul>
+      </section>
+
+      <section className="my-20">
+        {isLink && (
+          <div>
+            <h2 className="text-2xl text-center font-bold mb-3">{links.length > 1 ? 'Links:' : 'Link:'}</h2>
+          </div>
+        )}
+        {isLink &&
+          links.map(link => (
+            <div className="flex justify-center gap-5" key={link}>
+              <Link
+                to={link}
+                className="text-[#FF0D48] hover:text-[#e20048] font-medium"
+              >
+                {link}
+              </Link>
+            </div>
+          ))}
+      </section>
+    </article>
   )
 }

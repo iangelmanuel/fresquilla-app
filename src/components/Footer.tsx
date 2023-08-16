@@ -33,7 +33,7 @@ export default function Footer (): JSX.Element {
         </article>
         <article className="flex flex-col gap-5 mt-5">
           <h3 className="text-white text-center lg:text-start text-2xl font-bold">Redes Sociales</h3>
-          <section className="flex justify-center lg:justify-start gap-5">
+          <section className="flex flex-col items-center lg:items-start gap-5">
             <a
               href="https://www.instagram.com/fresquilla_bq/"
               target="_blank"
@@ -46,12 +46,12 @@ export default function Footer (): JSX.Element {
           </section>
         </article>
         <article className="mt-5">
-          <div className="flex flex-col gap-5">
+          <section className="flex flex-col gap-5">
             <h3 className="text-center lg:text-start text-2xl text-white font-bold">Horarios</h3>
             <p className="text-center lg:text-start text-base text-white font-bold">Lunes a Viernes: <span className="text-base font-normal">8:00 am - 5:00 pm</span></p>
             <p className="text-center lg:text-start text-base text-white font-bold">Sabados: <span className="text-base font-normal">12:00 am - 12:00 pm</span></p>
             <p className="text-center lg:text-start text-base text-white font-bold">Domingos: <span className="text-base font-normal">Cerrado</span></p>
-          </div>
+          </section>
         </article>
         <article className="flex justify-center lg:justify-end items-center mb-10 lg:mb-0">
           <iframe

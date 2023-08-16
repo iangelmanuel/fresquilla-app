@@ -11,7 +11,7 @@ export default function AdminNavigation ({ item }: AdminNavigationProps): JSX.El
   const { name, path } = item
   const location = useLocation()
   return (
-    <li className={`${path === location.pathname ? 'bg-white text-[#C21116]' : 'hover:bg-[#C21116] text-white'} block py-2 px-4`}>
+    <li className={`${path === location.pathname ? 'bg-white text-[#C21116] shadow-2xl' : 'hover:bg-[#C21116] text-white'} block py-2 px-4`}>
       <Link
         key={path}
         to={path}

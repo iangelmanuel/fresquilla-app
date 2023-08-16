@@ -21,7 +21,7 @@ export default function Form (): JSX.Element {
     <form
       noValidate
       onSubmit={onSubmit}
-      className="bg-zinc-50 shadow-lg rounded-lg px-8 py-5 pb-8 mb-4"
+      className="bg-white shadow-xl rounded-lg px-8 py-5 pb-8 mb-4"
     >
       <h5 className="text-center text-xl font-bold mb-5">Comunicate con nosotros para dudas o realizar pedidos</h5>
       <section className="mb-4">

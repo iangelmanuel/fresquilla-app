@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import useFresh from '../../hook/useFresh'
+import useAuth from '../../hook/useAuth'
 import AdminHamburgerNavItems from './AdminHamburgerNavItems'
 import { ADMINAV } from '../../data/adminNavigation'
 import { ClosedNavBar } from '../../svg/SvgIcons'
@@ -12,6 +13,7 @@ const menuAnimation = {
 
 export default function AdminHamburgerMenu (): JSX.Element {
   const { handleHamburgerNavBar } = useFresh()
+  const { handleLogout } = useAuth()
   return (
     <motion.article
       variants={menuAnimation}
@@ -48,8 +50,16 @@ export default function AdminHamburgerMenu (): JSX.Element {
           ))}
         </ul>
       </main>
-      <footer className="flex justify-center md:mt-20 mx-5">
-        <p className="text-sm">Todos los derechos reservados Fresquilla { new Date().getFullYear() }</p>
+      <footer className="flex gap-10 flex-col justify-center md:mt-20 mx-5">
+        <div>
+          <button
+            onClick={handleLogout}
+            className="text-white font-bold py-2 px-5 bg-[#FF0D48] rounded-lg shadow-xl"
+          >Cerrar Sesión</button>
+        </div>
+        <div>
+          <p className="text-sm">Todos los derechos reservados Fresquilla { new Date().getFullYear() }</p>
+        </div>
       </footer>
     </motion.article>
   )

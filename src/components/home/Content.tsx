@@ -17,9 +17,9 @@ export default function Content (): JSX.Element {
           <StartContent />
         </section>
 
-        <article className="mx-auto bg-gray-100 py-10 w-full rounded-lg md:rounded-none">
+        <article className="mx-auto bg-[#FF0D48] py-10 w-full rounded-lg md:rounded-none">
           <section className="flex justify-center items-center">
-            <h3 className="text-[#FF0D48] text-4xl font-extrabold text-center mb-10">¿Por qué preferirnos?</h3>
+            <h3 className="text-white text-4xl font-extrabold text-center mb-10">¿Por qué preferirnos?</h3>
           </section>
           <section className="flex-col space-y-10 md:space-y-0 md:flex md:flex-row justify-around">
             {contentData.map(item => (

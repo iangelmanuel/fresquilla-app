@@ -31,7 +31,11 @@
 28. [✅] Estilar el dropzone.
 29. [✅] Arreglar el problema de base64 del formulario de crear blog.
 30. [✅] Auditoria de código 2.0.
-31. [] Agregar funcionalidad de mandar arreglo de ingredientes, links y separar los parrafos.
+31. [✅] Agregar funcionalidad de mandar arreglo de ingredientes, links y separar los parrafos.
+32. [✅] Mejorar el estilo de cada blog en las rutas dinamicas.
+33. [✅] Mejorar el formulario de crear un blog.
+34. [✅] Añadirle al administrador las rutas dinamicas donde pueda ver el post.
+35. [✅] Añadir la funcionalidad de logout del administrador.
 
 ** TODO DATABASE: **
 1. [✅] Crear base de datos con Node, Express y MongoDB.

@@ -7,6 +7,8 @@ import useFresh from '../../hook/useFresh'
 import { titleValidation, ingredientsValidation, descValidation, linkValidation } from '../../validation/blogValidation'
 import type { DataBlogs } from '../../interfaces/type'
 
+// TODO: Mejorar los estilos del formulario.
+
 export default function AdminFormBlog (): JSX.Element {
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
   const { sendBlogData } = useFresh()
@@ -61,11 +63,14 @@ export default function AdminFormBlog (): JSX.Element {
       return
     }
 
+    const listOfIngredients = ingredients.split(', ')
+    const listOfLinks = links.split(', ')
+    const separateTextDescription = description.split('\n')
     const newData = {
       title,
-      ingredients,
-      description,
-      links,
+      ingredients: listOfIngredients,
+      description: separateTextDescription,
+      links: listOfLinks,
       image
     }
 
@@ -83,17 +88,19 @@ export default function AdminFormBlog (): JSX.Element {
     >
       <form
         onSubmit={onSubmit}
-        className="flex flex-col gap-4 w-10/12 md:w-full mx-auto bg-zinc-100 p-5 md:p-20 rounded-lg shadow-lg"
+        className="flex flex-col gap-4 w-10/12 mx-auto md:w-auto bg-white p-5 md:p-10 rounded-lg shadow-xl"
       >
         <h4 className="text-center text-2xl font-bold mb-10">Crea tu Blog para Fresquilla</h4>
         <section className="flex gap-1 flex-col mb-6">
-          <label htmlFor="title" className="text-xl font-bold">Título</label>
+          <label htmlFor="title" className="text-xl font-bold">
+            Título <span className="text-base font-normal">(Campo Obligatorio)</span>
+          </label>
           <input
             type="text"
             id="title"
             {...register('title', titleValidation)}
             placeholder="Ej. Curiosidades de las fresas"
-            className="border-2 border-gray-300 rounded-lg p-2"
+            className="border-2 border-gray-300 rounded-lg shadow-lg p-2"
           />
           {(errors.title !== null) && <span className="text-red-500">{errors.title?.message as string}</span>}
         </section>
@@ -107,18 +114,21 @@ export default function AdminFormBlog (): JSX.Element {
             id="ingredients"
             {...register('ingredients', ingredientsValidation)}
             placeholder="Ej. 1 taza de fresas, 1 taza de azúcar..."
-            className="border-2 border-gray-300 rounded-lg p-2"
+            className="border-2 border-gray-300 rounded-lg shadow-lg p-2"
           />
           {(errors.ingredients !== null) && <span className="text-red-500">{errors.ingredients?.message as string}</span>}
         </section>
 
         <section className="flex gap-1 flex-col mb-6">
-          <label htmlFor="description" className="text-lg font-bold">Descripción</label>
+          <label htmlFor="description" className="text-lg font-bold">
+            Descripción <span className="text-base font-normal">(Campo Obligatorio)</span>
+          </label>
           <textarea
             id="description"
+            rows={10}
             {...register('description', descValidation)}
             placeholder="Ej. Las fresas son una fruta muy rica y nutritiva..."
-            className="border-2 border-gray-300 rounded-lg p-2"
+            className="border-2 border-gray-300 rounded-lg shadow-lg p-2"
           />
           {(errors.description !== null) && <span className="text-red-500">{errors.description?.message as string}</span>}
         </section>
@@ -132,18 +142,18 @@ export default function AdminFormBlog (): JSX.Element {
             id="ingredients"
             {...register('links', linkValidation)}
             placeholder="Ej. https://www.fresquilla.com/blog/curiosidades-fresas"
-            className="border-2 border-gray-300 rounded-lg p-2"
+            className="border-2 border-gray-300 rounded-lg shadow-lg p-2"
           />
           {(errors.link !== null) && <span className="text-red-500">{errors.link?.message as string}</span>}
         </section>
 
         <section className="flex gap-1 flex-col mb-6">
           <label htmlFor="image" className="text-lg font-bold">
-            Imagen <span className="font-normal">(Campo obligatorio)</span>
+            Imagen <span className="text-base font-normal">(Campo Obligatorio)</span>
           </label>
           <div
             {...getRootProps()}
-            className="flex gap-5 flex-col justify-center items-center border border-gray-300 p-2 rounded-lg cursor-pointer"
+            className="flex gap-5 flex-col justify-center items-center border border-gray-300 p-2 rounded-lg shadow-lg cursor-pointer"
           >
             <input {...getInputProps()} />
             {
@@ -155,7 +165,7 @@ export default function AdminFormBlog (): JSX.Element {
               <img
                 src={image}
                 alt="Imagen subida"
-                className="w-40 h-40 object-cover rounded-lg"
+                className="w-40 h-40 object-cover rounded-lg shadow-lg"
               />
             )}
           </div>

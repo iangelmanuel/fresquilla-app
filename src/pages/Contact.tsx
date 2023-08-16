@@ -37,8 +37,8 @@ export default function Contact (): JSX.Element {
             <SwitchForm />
             <p className="inline-block pl-[0.15rem] hover:cursor-pointer text-center mb-5 font-semibold">
               {isClaimsForm
-                ? '¿Tienes alguna queja o reclamo? Cambia el modo del Formulario'
-                : '¿Quieres contactarnos con nosotros? Cambia el modo del Formulario'
+                ? '¿Quieres contactarte con nosotros? Cambia el modo del Formulario'
+                : '¿Tienes alguna queja o reclamo? Cambia el modo del Formulario'
               }
             </p>
           </section>

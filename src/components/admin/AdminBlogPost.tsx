@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import type { DataBlogs } from '../interfaces/type'
-import { formatedDate } from '../helpers/formatedDate'
-import { LinkBlog } from '../svg/SvgIcons'
+import type { DataBlogs } from '../../interfaces/type'
+import { formatedDate } from '../../helpers/formatedDate'
+import { LinkBlog } from '../../svg/SvgIcons'
 
-interface PostProps {
+interface AdminPostProps {
   blog: DataBlogs
   index: number
 }
 
-const articleAnimation = {
+const sectionVariants = {
   hidden: {
     opacity: 0,
     y: 50
@@ -25,11 +25,11 @@ const articleAnimation = {
   }
 }
 
-export default function BlogPost ({ blog, index }: PostProps): JSX.Element {
+export default function AdminBlogPost ({ blog, index }: AdminPostProps): JSX.Element {
   const { _id, title, description, createdAt } = blog
   return (
     <motion.article
-      variants={articleAnimation}
+      variants={sectionVariants}
       custom={{ delay: (index + 1) * 0.1 }}
       initial="hidden"
       animate="visible"
@@ -39,7 +39,7 @@ export default function BlogPost ({ blog, index }: PostProps): JSX.Element {
     >
       <section className="mb-4">
         <div className="flex justify-end items-end mt-5">
-          <Link to={`/blog/${_id}`}>
+          <Link to={`/admin/blog/${_id}`}>
             <LinkBlog />
           </Link>
         </div>

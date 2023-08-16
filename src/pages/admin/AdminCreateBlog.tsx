@@ -14,7 +14,7 @@ export default function AdminCreateBlog (): JSX.Element {
           Blog de la página de <span className="text-[#FF0D48]">Fresquilla</span>
         </motion.h2>
       </section>
-      <section className="flex justify-center">
+      <section className="md:mx-96">
         <AdminFormBlog />
       </section>
     </article>
