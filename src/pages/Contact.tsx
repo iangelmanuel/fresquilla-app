@@ -33,14 +33,14 @@ export default function Contact (): JSX.Element {
         <AtroposCard />
 
         <article className="w-full flex gap-5 md:gap-0 flex-col items-center md:block px-5 md:w-1/2 mt-10">
-          <section className="flex gap-5 flex-col md:flex-row justify-center items-center md:items-start">
-            <SwitchForm />
-            <p className="inline-block pl-[0.15rem] hover:cursor-pointer text-center mb-5 font-semibold">
+          <section className="flex gap-5 flex-col items-center">
+            <p className="inline-block pl-[0.15rem] hover:cursor-pointer text-center font-semibold">
               {isClaimsForm
                 ? '¿Quieres contactarte con nosotros? Cambia el modo del Formulario'
                 : '¿Tienes alguna queja o reclamo? Cambia el modo del Formulario'
               }
             </p>
+            <SwitchForm />
           </section>
           <AnimatePresence>
             {isClaimsForm

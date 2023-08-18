@@ -4,8 +4,8 @@ import { Dialog, Transition } from '@headlessui/react'
 
 interface ClaimModalProps {
   id: string
-  handleModalToggle: () => void
   isModalOpen: boolean
+  handleModalToggle: () => void
 }
 
 export default function DeleteContactModal ({ id, isModalOpen, handleModalToggle }: ClaimModalProps): JSX.Element {

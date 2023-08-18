@@ -204,6 +204,37 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
   }
 
+  const deleteBlogData = async (id: string): Promise<void> => {
+    console.log('recibe el', id)
+    const token = localStorage.getItem('token') as string
+    if (token === null && token === '') return
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Application: 'application/json'
+      }
+    }
+
+    try {
+      const { data } = await axiosClient.delete(`blog/blog-data/${id}`, config)
+      const newData = blogs.filter(blog => blog._id !== data._id)
+      toast.success('El blog se elimino correctamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+      setBlogs(newData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <FreshContext.Provider
       value={{
@@ -224,7 +255,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         deleteClaimData,
         sendBlogData,
         getBlogsData,
-        getBlogData
+        getBlogData,
+        deleteBlogData
       }}
     >{children}</FreshContext.Provider>
   )

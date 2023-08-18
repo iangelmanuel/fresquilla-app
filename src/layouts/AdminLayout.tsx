@@ -50,7 +50,6 @@ export default function AdminLayout (): JSX.Element {
                           <motion.p
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={handleLogout}
                             className="text-white font-bold py-2 px-5 hover:bg-[#C21116] hover:shadow-xl hover:rounded-full hover:cursor-pointer"
                           >
                             Ir a Fresquilla

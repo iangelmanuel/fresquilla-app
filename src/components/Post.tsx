@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import type { DataBlogs } from '../interfaces/type'
 import { formatedDate } from '../helpers/formatedDate'
-import { IngredientsList } from '../svg/SvgIcons'
+import { GoBack, IngredientsList } from '../svg/SvgIcons'
 
 interface PostProps {
   blog: DataBlogs
@@ -21,15 +21,17 @@ export default function Post ({ blog }: PostProps): JSX.Element {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleClick}
-          className="bg-[#FF0D48] text-white font-bold py-2 px-5 hover:bg-[#C21116] shadow-xl rounded-full hover:cursor-pointer"
-        >Volver</motion.button>
+          className="bg-[#FF0D48] text-white font-bold py-2 px-2 hover:bg-[#C21116] shadow-xl rounded-full hover:cursor-pointer"
+        >
+          <GoBack />
+        </motion.button>
         <p className="text-end text-gray-500 text-sm">Publicado: {formatedDate(createdAt)}</p>
       </section>
 
       <section className="flex gap-5 flex-col justify-center items-center my-10">
         <div className="w-full md:w-2/5 mb-10">
           <img
-            src={image}
+            src={image?.url}
             alt={`Imagen de ${title}`}
             className="w-full h-auto object-cover rounded-lg shadow-lg"
           />

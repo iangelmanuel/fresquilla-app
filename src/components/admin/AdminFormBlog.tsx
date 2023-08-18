@@ -7,8 +7,6 @@ import useFresh from '../../hook/useFresh'
 import { titleValidation, ingredientsValidation, descValidation, linkValidation } from '../../validation/blogValidation'
 import type { DataBlogs } from '../../interfaces/type'
 
-// TODO: Mejorar los estilos del formulario.
-
 export default function AdminFormBlog (): JSX.Element {
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
   const { sendBlogData } = useFresh()
@@ -153,7 +151,7 @@ export default function AdminFormBlog (): JSX.Element {
           </label>
           <div
             {...getRootProps()}
-            className="flex gap-5 flex-col justify-center items-center border border-gray-300 p-2 rounded-lg shadow-lg cursor-pointer"
+            className="flex gap-5 flex-col justify-center items-center border border-gray-300 px-2 py-10 rounded-lg shadow-lg cursor-pointer"
           >
             <input {...getInputProps()} />
             {

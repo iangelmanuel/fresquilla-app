@@ -7,9 +7,7 @@ export default function MyToggle (): JSX.Element {
     <Switch
       checked={isClaimsForm}
       onChange={handleClaimsForm}
-      className={`${
-        isClaimsForm ? 'bg-[#FF0D48]' : 'bg-gray-200'
-      } relative inline-flex h-6 w-11 items-center rounded-full`}
+      className={`${isClaimsForm ? 'bg-[#FF0D48]' : 'bg-gray-200'} relative inline-flex h-6 w-11 items-center rounded-full mb-5`}
     >
       <span
         className={`${

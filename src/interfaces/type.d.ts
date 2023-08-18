@@ -24,8 +24,13 @@ export interface DataBlogs {
   ingredients: string[]
   description: string[]
   links: string[]
-  image: string
+  image: DataImage & string
   createdAt: string
+}
+
+export interface DataImage {
+  url: string
+  public_id: string
 }
 
 export interface Alert {
@@ -52,6 +57,7 @@ export interface FreshContextValue {
   sendBlogData: (blogData: DataBlogs) => Promise<void>
   getBlogsData: () => Promise<void>
   getBlogData: (id: string) => Promise<void>
+  deleteBlogData: (id: string) => Promise<void>
 }
 
 // AuthProvider

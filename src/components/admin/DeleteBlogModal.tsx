@@ -1,15 +1,17 @@
 import { Fragment } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import useFresh from '../../hook/useFresh'
 
-interface ClaimModalProps {
+interface BlogModalProps {
   id: string
   isModalOpen: boolean
   handleModalToggle: () => void
 }
 
-export default function DeleteClaimModal ({ id, isModalOpen, handleModalToggle }: ClaimModalProps): JSX.Element {
-  const { deleteClaimData } = useFresh()
+export default function DeleteBlogModal ({ id, isModalOpen, handleModalToggle }: BlogModalProps): JSX.Element {
+  const { deleteBlogData } = useFresh()
+  const navigate = useNavigate()
   return (
     <Transition.Root show={isModalOpen} as={Fragment}>
       <Dialog
@@ -71,11 +73,11 @@ export default function DeleteClaimModal ({ id, isModalOpen, handleModalToggle }
                   <Dialog.Title
                     as="h3"
                     className="text-lg leading-6 font-bold text-gray-900">
-                    ¿Estás seguro de eliminar este reclamo?
+                    ¿Estás seguro que quieres eliminar este blog?
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-700">
-                      Si eliminas este reclamo, no podrás volver a recuperarlo.
+                      Si eliminas este blog, no podrás volver a recuperarlo.
                     </p>
                   </div>
                 </div>
@@ -83,7 +85,11 @@ export default function DeleteClaimModal ({ id, isModalOpen, handleModalToggle }
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  onClick={async () => { await deleteClaimData(id) }}
+                  onClick={async () => {
+                    await deleteBlogData(id)
+                    handleModalToggle()
+                    navigate('/admin/blogs')
+                  }}
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >Eliminar</button>
                 <button

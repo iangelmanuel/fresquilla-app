@@ -26,7 +26,7 @@
 23. [✅] Crear rutas dinamicas para el acceso a cada uno de los posts.
 24. [✅] Borrar los archivos que no se estan utilizando (Lottie).
 25. [✅] Estilar el post individual.
-26. [] Agregar la funcionalidad de eliminar un post al administrador.
+26. [✅] Agregar la funcionalidad de eliminar un post al administrador.
 27. [] Agregar la funcionalidad de editar un post al administrador.
 28. [✅] Estilar el dropzone.
 29. [✅] Arreglar el problema de base64 del formulario de crear blog.

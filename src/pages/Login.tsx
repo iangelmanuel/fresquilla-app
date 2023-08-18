@@ -81,7 +81,7 @@ export default function Login (): JSX.Element {
           </div>
         </section>
 
-        <section className="bg-red-300 border-l-8 border-red-500 p-5 rounded shadow-lg">
+        <section className="bg-red-300 border-l-8 border-red-500 p-5 rounded shadow-lg mb-20">
           <p className="text-lg text-center text-zinc-700 font-bold">
             ¡Si no eres propietario o una persona autorizada regresa a la <Link to="/" className="text-[#FF0D48] hover:underline">página principal!</Link>
           </p>
