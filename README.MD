@@ -49,4 +49,3 @@
   5.4 [✅] GET: Recibir datos de los nuevos blog enviados desde el panel de administrador.
   5.5 [✅] GET: Recibir y filtrar Quejas y Reclamos y datos de Contacto en el panel de administrador.
   5.6 [✅] Agregar modal para eliminar Quejas y Reclamos y datos de Contacto en el panel de administrador.
-6. [] Implementar soket.io

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import DeleteBlogModal from './DeleteBlogModal'
+import UpdateBlogModal from './UpdateBlogModal'
 import { GoBack, DeleteAdminPost, EditAdminPost, IngredientsList } from '../../svg/SvgIcons'
 import { formatedDate } from '../../helpers/formatedDate'
 import type { DataBlogs } from '../../interfaces/type'
@@ -13,10 +14,12 @@ interface AdminPostProps {
 export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
   const { _id, title, ingredients, description, links, image, createdAt } = blog
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const isIngredients = ingredients?.length > 0
-  const isLink = links?.length > 0
+  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState<boolean>(false)
+  const isIngredients = ingredients !== undefined && ingredients.length > 0
+  const isLink = links !== undefined && links.length > 0
   const handleClick = (): void => { window.history.back() }
   const handleModalToggle = (): void => { setIsModalOpen(!isModalOpen) }
+  const handleModalUpdateToggle = (): void => { setIsModalUpdateOpen(!isModalUpdateOpen) }
   return (
     <>
       <article className="container mx-auto px-4 py-4 md:px-0 md:max-w-5xl flex flex-col bg-white rounded-xl shadow-xl mb-20">
@@ -41,7 +44,7 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={handleClick}
+            onClick={handleModalUpdateToggle}
             className="flex gap-1 bg-sky-500 text-white font-bold py-2 px-3 hover:bg-sky-600 shadow-xl rounded-full hover:cursor-pointer"
           >
             <EditAdminPost />
@@ -84,7 +87,8 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
                   <IngredientsList />
                   <p className="text-base text-white font-bold">{ingredient}</p>
                 </li>
-              ))}
+              ))
+            }
           </ul>
         </section>
         <section className="my-20">
@@ -94,8 +98,8 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
             </div>
           )}
           {isLink &&
-            links.map(link => (
-              <div className="flex justify-center gap-5" key={link}>
+            links.map((link, index) => (
+              <div className="flex justify-center gap-5" key={index}>
                 <Link
                   to={link}
                   className="text-[#FF0D48] hover:text-[#e20048] font-medium"
@@ -110,6 +114,12 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           id={_id}
           isModalOpen={isModalOpen}
           handleModalToggle={handleModalToggle}
+        />
+      }
+      {isModalUpdateOpen && <UpdateBlogModal
+          blog={blog}
+          isModalUpdateOpen={isModalUpdateOpen}
+          handleModalUpdateToggle={handleModalUpdateToggle}
         />
       }
     </>

@@ -58,6 +58,7 @@ export interface FreshContextValue {
   getBlogsData: () => Promise<void>
   getBlogData: (id: string) => Promise<void>
   deleteBlogData: (id: string) => Promise<void>
+  updateBlogData: (blogData: DataBlogs) => Promise<void>
 }
 
 // AuthProvider

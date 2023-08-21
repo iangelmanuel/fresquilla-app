@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { useDropzone, type FileRejection, type DropzoneOptions } from 'react-dropzone'
 import { toast } from 'react-toastify'
 import useFresh from '../../hook/useFresh'
-import { titleValidation, ingredientsValidation, descValidation, linkValidation } from '../../validation/blogValidation'
 import type { DataBlogs } from '../../interfaces/type'
+import { titleValidation, ingredientsValidation, descValidation, linkValidation } from '../../validation/blogValidation'
 
 export default function AdminFormBlog (): JSX.Element {
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
@@ -14,7 +14,6 @@ export default function AdminFormBlog (): JSX.Element {
 
   const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]): void => {
     if (fileRejections.length > 0) {
-      console.log(fileRejections)
       toast.error('¡Solo se permiten imagenes!', {
         position: 'top-right',
         autoClose: 5000,

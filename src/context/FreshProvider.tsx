@@ -197,7 +197,7 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
 
   const getBlogData = async (id: string): Promise<void> => {
     try {
-      const { data } = await axiosClient.get<DataBlogs>(`/blog/blog/${id}`)
+      const { data } = await axiosClient<DataBlogs>(`blog/blog/${id}`)
       setBlog(data)
     } catch (error) {
       console.log(error)
@@ -205,7 +205,6 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
   }
 
   const deleteBlogData = async (id: string): Promise<void> => {
-    console.log('recibe el', id)
     const token = localStorage.getItem('token') as string
     if (token === null && token === '') return
 
@@ -235,6 +234,36 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
     }
   }
 
+  const updateBlogData = async (blogData: FieldValues): Promise<void> => {
+    const token = localStorage.getItem('token') as string
+    if (token === null && token === '') return
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    try {
+      const { data } = await axiosClient.put(`/blog/blog-data/${blogData._id as string}`, blogData, config)
+      const newData = blogs.map(blog => blog._id === data._id ? data : blog)
+      setBlogs(newData)
+      toast.success('El blog se actualizo correctamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <FreshContext.Provider
       value={{
@@ -256,7 +285,8 @@ export default function FreshProvider ({ children }: FreshProviderProps): JSX.El
         sendBlogData,
         getBlogsData,
         getBlogData,
-        deleteBlogData
+        deleteBlogData,
+        updateBlogData
       }}
     >{children}</FreshContext.Provider>
   )
