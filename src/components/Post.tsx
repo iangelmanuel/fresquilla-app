@@ -10,8 +10,8 @@ interface PostProps {
 
 export default function Post ({ blog }: PostProps): JSX.Element {
   const { title, ingredients, description, links, image, createdAt } = blog
-  const isIngredients = ingredients?.length > 0
-  const isLink = links?.length > 0
+  const isIngredients = ingredients.includes('') ? null : ingredients
+  const isLink = links.includes('') ? null : links
   const handleClick = (): void => { window.history.back() }
   return (
     <article className="container mx-auto px-4 py-4 md:px-0 md:max-w-5xl flex flex-col bg-white rounded-xl shadow-xl mb-20">
@@ -49,13 +49,13 @@ export default function Post ({ blog }: PostProps): JSX.Element {
       </section>
 
       <section className="mx-auto max-w-3xl">
-        {isIngredients && (
+        {(isIngredients != null) && (
           <div className="mb-4">
             <h2 className="text-2xl font-bold">Ingredientes para la receta:</h2>
           </div>
         )}
         <ul className="grid grid-cols-1 gap-2">
-          {isIngredients &&
+          {(isIngredients != null) &&
             ingredients.map((ingredient, index) => (
               <li
                 key={index}
@@ -69,12 +69,12 @@ export default function Post ({ blog }: PostProps): JSX.Element {
       </section>
 
       <section className="my-20">
-        {isLink && (
+        {(isLink != null) && (
           <div>
             <h2 className="text-2xl text-center font-bold mb-3">{links.length > 1 ? 'Links:' : 'Link:'}</h2>
           </div>
         )}
-        {isLink &&
+        {(isLink != null) &&
           links.map(link => (
             <div className="flex justify-center gap-5" key={link}>
               <Link

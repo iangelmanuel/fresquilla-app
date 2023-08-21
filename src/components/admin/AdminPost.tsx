@@ -15,8 +15,9 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
   const { _id, title, ingredients, description, links, image, createdAt } = blog
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState<boolean>(false)
-  const isIngredients = ingredients !== undefined && ingredients.length > 0
-  const isLink = links !== undefined && links.length > 0
+  const isIngredients = ingredients.includes('') ? null : ingredients
+  const isLink = links.includes('') ? null : links
+  console.log(blog)
   const handleClick = (): void => { window.history.back() }
   const handleModalToggle = (): void => { setIsModalOpen(!isModalOpen) }
   const handleModalUpdateToggle = (): void => { setIsModalUpdateOpen(!isModalUpdateOpen) }
@@ -72,13 +73,13 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           </div>
         </section>
         <section className="mx-auto max-w-3xl">
-          {isIngredients && (
+          {(isIngredients != null) && (
             <div className="mb-4">
               <h2 className="text-2xl font-bold">Ingredientes para la receta:</h2>
             </div>
           )}
           <ul className="grid grid-cols-1 gap-2">
-            {isIngredients &&
+            {(isIngredients != null) &&
               ingredients.map((ingredient, index) => (
                 <li
                   key={index}
@@ -92,14 +93,14 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           </ul>
         </section>
         <section className="my-20">
-          {isLink && (
+          {(isLink != null) && (
             <div>
               <h2 className="text-2xl text-center font-bold mb-3">{links.length > 1 ? 'Links:' : 'Link:'}</h2>
             </div>
           )}
-          {isLink &&
+          {(isLink != null) &&
             links.map((link, index) => (
-              <div className="flex justify-center gap-5" key={index}>
+              <div key={index} className="flex justify-center gap-5">
                 <Link
                   to={link}
                   className="text-[#FF0D48] hover:text-[#e20048] font-medium"
