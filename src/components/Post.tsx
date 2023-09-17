@@ -10,8 +10,8 @@ interface PostProps {
 
 export default function Post ({ blog }: PostProps): JSX.Element {
   const { title, ingredients, description, links, image, createdAt } = blog
-  const isIngredients = ingredients.includes('') ? null : ingredients
-  const isLink = links.includes('') ? null : links
+  const isIngredients = ingredients?.includes('') ? null : ingredients
+  const isLink = links?.includes('') ? null : links
   const handleClick = (): void => { window.history.back() }
   return (
     <article className="container mx-auto px-4 py-4 md:px-0 md:max-w-5xl flex flex-col bg-white rounded-xl shadow-xl mb-20">
