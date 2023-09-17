@@ -15,9 +15,8 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
   const { _id, title, ingredients, description, links, image, createdAt } = blog
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState<boolean>(false)
-  const isIngredients = ingredients.includes('') ? null : ingredients
-  const isLink = links.includes('') ? null : links
-  console.log(blog)
+  const isIngredients = ingredients?.includes('') ? null : ingredients
+  const isLink = links?.includes('') ? null : links
   const handleClick = (): void => { window.history.back() }
   const handleModalToggle = (): void => { setIsModalOpen(!isModalOpen) }
   const handleModalUpdateToggle = (): void => { setIsModalUpdateOpen(!isModalUpdateOpen) }
@@ -66,7 +65,7 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           </div>
           <div className="w-full md:w-3/5 flex flex-col gap-10">
             {description?.map((paragraph, index) => (
-              <div key={index}>
+              <div key={`[${index}]-[${paragraph.slice(5)}]`}>
                 <p className="text-gray-600 text-base md:text-xl">{paragraph}</p>
               </div>
             ))}
@@ -82,7 +81,7 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
             {(isIngredients != null) &&
               ingredients.map((ingredient, index) => (
                 <li
-                  key={index}
+                  key={`[${index}]-[${ingredient}]`}
                   className="flex items-center bg-[#FF0D48] rounded-lg shadow-lg p-4"
                 >
                   <IngredientsList />
@@ -100,7 +99,7 @@ export default function AdminPost ({ blog }: AdminPostProps): JSX.Element {
           )}
           {(isLink != null) &&
             links.map((link, index) => (
-              <div key={index} className="flex justify-center gap-5">
+              <div key={`[${index}]-[${link}]`} className="flex justify-center gap-5">
                 <Link
                   to={link}
                   className="text-[#FF0D48] hover:text-[#e20048] font-medium"

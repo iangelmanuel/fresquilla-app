@@ -24,8 +24,8 @@ export default function Contact (): JSX.Element {
       <header className="mb-5">
         <Hero
           title="¿Tienes dudas o deseas comunicarte con nosotros?"
-          color="¡Contactanos!"
-          desc="Por este medio podrás contactarnos y te responderemos lo mas pronto posible con un correo electronico"
+          color="¡Contáctanos!"
+          desc="Por este medio podrás contactarnos y te responderemos lo más pronto posible con un correo electrónico"
           width="40"
         />
       </header>
@@ -36,8 +36,8 @@ export default function Contact (): JSX.Element {
           <section className="flex gap-5 flex-col items-center">
             <p className="inline-block pl-[0.15rem] hover:cursor-pointer text-center font-semibold">
               {isClaimsForm
-                ? '¿Quieres contactarte con nosotros? Cambia el modo del Formulario'
-                : '¿Tienes alguna queja o reclamo? Cambia el modo del Formulario'
+                ? '¿Quieres contactarte con nosotros? Cambia el modo del formulario'
+                : '¿Tienes alguna queja o reclamo? Cambia el modo del formulario'
               }
             </p>
             <SwitchForm />

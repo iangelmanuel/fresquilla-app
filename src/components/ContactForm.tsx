@@ -23,7 +23,7 @@ export default function Form (): JSX.Element {
       onSubmit={onSubmit}
       className="bg-white shadow-xl rounded-lg px-8 py-5 pb-8 mb-4"
     >
-      <h5 className="text-center text-xl font-bold mb-5">Comunicate con nosotros para dudas o realizar pedidos</h5>
+      <h5 className="text-center text-xl font-bold mb-5">Comunícate con nosotros para resolver tus dudas</h5>
       <section className="mb-4">
         <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="name">Nombre</label>
         <input
@@ -47,7 +47,7 @@ export default function Form (): JSX.Element {
         {(errors.email != null) && <span className="text-sm text-red-500">{errors.email?.message as string}</span>}
       </section>
       <section className="mb-4">
-        <label className="block text-zinc-700 text-lg font-bold mb-2" htmlFor="phone">Télefono</label>
+        <label className="block text-zinc-700 text-lg font-bold mb-2" htmlFor="phone">Teléfono</label>
         <input
           id="phone"
           type="phone"

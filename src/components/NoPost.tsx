@@ -10,7 +10,7 @@ export default function NoPost (): JSX.Element {
       transition={{ duration: 0.5 }}
       className="flex flex-col justify-center items-center mb-20"
     >
-      <h3 className="text-center text-4xl font-extrabold">No existe ningun Post aún</h3>
+      <h3 className="text-center text-4xl font-extrabold">No existe ningún post aún</h3>
       <div className="flex justify-center">
         <Lottie
           className="w-96 h-96"

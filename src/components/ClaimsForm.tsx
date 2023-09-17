@@ -67,7 +67,7 @@ export default function ClaimsForm (): JSX.Element {
         {(errors.email != null) && <span className="text-sm text-red-500">{errors.email?.message as string}</span>}
       </section>
       <section className="mb-4">
-        <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="phone">Télefono</label>
+        <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="phone">Teléfono</label>
         <input
           id="phone"
           type="phone"

@@ -22,7 +22,7 @@ export default function Blogs (): JSX.Element {
         <Hero
           title="Bienvenido al apartado de"
           color="Blog"
-          desc="Aquí se subirán resetas, trucos y de mas que puedes hacer con nuestras fresas"
+          desc="En este apartado vas a encontrar todo nuestro contenido de recetas, postres y muchas cosas más"
           width="40"
         />
       </header>
@@ -35,7 +35,7 @@ export default function Blogs (): JSX.Element {
         >
           <h1 className="text-center text-white text-4xl font-extrabold mb-3">¡Nuestro Blog!</h1>
           <p className="text-center text-white text-sm md:text-xl md:font-bold">
-            Te invitamos a disfrutar de todo nuestro contenido de resetas, postres y muchas cosas divertidas que puedes hacer con las fresas y no lo sabias
+            Te invitamos a disfrutar de todo nuestro contenido de recetas, postres y muchas cosas divertidas que puedes hacer con las fresas y no lo sabias
           </p>
         </motion.section>
       )}

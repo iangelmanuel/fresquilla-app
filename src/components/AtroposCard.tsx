@@ -54,7 +54,7 @@ export default function AtroposCard (): JSX.Element {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="text-center text-xs md:text-base text-white font-semibold"
-              >Telefono: <span className="font-normal">+57 324 419 2998</span></motion.p>
+              >Teléfono: <span className="font-normal">+57 324 419 2998</span></motion.p>
               <motion.p
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

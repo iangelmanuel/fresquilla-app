@@ -11,7 +11,7 @@ export default function App (): JSX.Element {
     >
       <header className="mb-20">
         <Hero
-          title="Hola! Bienvenido a"
+          title="Bienvenido a"
           color="Fresquilla"
           desc="Somos una empresa dedicada a la venta de fresas de la mejor calidad"
           width="100"
